@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="qual_69">Qual 69</string>
+    <string name="_254">254</string>
+    <string name="_1574">1574</string>
+    <string name="_4590">4590</string>
+    <string name="_1690">1690</string>
+    <string name="_1619">1619</string>
+    <string name="_1687">1687</string>
+    <string name="test">test</string>
+    <string name="button">Button</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="greenblitz_new_logo">Greenblitz new logo</string>
+</resources>
