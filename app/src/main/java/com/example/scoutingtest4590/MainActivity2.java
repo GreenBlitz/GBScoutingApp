@@ -21,92 +21,93 @@ import java.net.HttpURLConnection;
 import java.util.Scanner;
 
 public class MainActivity2 extends AppCompatActivity {
-	String PIN = "";
+    String PIN = "";
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main2);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
 
-		TextView ENTER_PIN = findViewById(R.id.ENTER_PIN);
-		Button LOGIN = findViewById(R.id.LOGIN);
+        TextView ENTER_PIN = findViewById(R.id.ENTER_PIN);
+        Button LOGIN = findViewById(R.id.LOGIN);
 
-		LOGIN.setOnClickListener(v ->
-		{
-			Thread thread = new Thread(new Runnable() {
+        LOGIN.setOnClickListener(v ->
+        {
+            Thread thread = new Thread(new Runnable() {
 
-				@Override
-				public void run() {
-					try {
-						//Your code goes here
-						PIN = ENTER_PIN.getText().toString();
-						JSONObject jsonObject = new JSONObject();
-						try {
-							jsonObject.put("PIN", PIN);
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-						try {
+                @Override
+                public void run() {
+                    try {
+                        //Your code goes here
+                        PIN = ENTER_PIN.getText().toString();
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("PIN", PIN);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
 //				File newFile = new File("output.json");
-							FileWriter file = new FileWriter("output.json");
-							file.write(jsonObject.toString());
-							file.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						System.out.println("JSON file created: " + jsonObject);
+                            FileWriter file = new FileWriter("output.json");
+                            file.write(jsonObject.toString());
+                            file.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("JSON file created: " + jsonObject);
 
 
-						URL url = null;
-						try {
-							url = new URL("http://10.134.0.166:5000/");
-							System.out.println("successfully created URL");
-						} catch (MalformedURLException e) {
-							e.printStackTrace();
-						}
-						HttpURLConnection conn = null;
-						try {
-							conn = (HttpURLConnection) url.openConnection();
-							System.out.println("Successfully initiated connection");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						conn.setDoOutput(true);
-						try {
-							conn.setRequestMethod("GET");
-							System.out.println(conn.getRequestMethod());
-							System.out.println("Successfully set request method");
-						} catch (ProtocolException e) {
-							e.printStackTrace();
-						}
-						BufferedReader br = null;
-						try {
-							br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-							System.out.println("Successfully created Input Buffer");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						String strCurrentLine = "";
-						String allText = "";
-						while (true) {
-							try {
-								if ((strCurrentLine = br.readLine()) == null) break;
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-							allText = allText.concat(strCurrentLine);
-						}
-						System.out.println(allText);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+                        URL url = null;
+                        try {
+                            url = new URL("http://192.168.43.143:5000/?a=kk");
+                            System.out.println("successfully created URL");
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        HttpURLConnection conn = null;
+                        try {
+                            conn = (HttpURLConnection) url.openConnection();
+                            System.out.println("Successfully initiated connection");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        conn.setDoOutput(false);
+                        try {
+                            conn.setRequestMethod("GET");
+                            System.out.println(conn.getRequestMethod());
+                            System.out.println("Successfully set request method");
+                        } catch (ProtocolException e) {
+                            e.printStackTrace();
+                        }
+                        
+                        BufferedReader br = null;
+                        try {
+                            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                            System.out.println("Successfully created Input Buffer");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        String strCurrentLine = "";
+                        String allText = "";
+                        while (true) {
+                            try {
+                                if ((strCurrentLine = br.readLine()) == null) break;
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            allText = allText.concat(strCurrentLine);
+                        }
+                        System.out.println(allText);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
 
-			thread.start();
+            thread.start();
 
-		});
-	}
+        });
+    }
 
 	/*
 
