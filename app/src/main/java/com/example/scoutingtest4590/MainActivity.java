@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity
 		{
 			StringBuilder PIN = new StringBuilder();
 			for(int i = 0; i < 6; i++)
-			{
 				PIN.append((int)(Math.random()*10));
-			}
 			PIN_VIEW.setText(PIN.toString());
+
 //		    sendToServer(PIN);
+
 			PIN_GEN.setEnabled(false);
 			new CountDownTimer(60000, 1000) {
 				@SuppressLint("SetTextI18n")
