@@ -22,10 +22,23 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 
 public class MainActivity2 extends AppCompatActivity {
-    String PIN = "";
+    String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    int SIZE = 30;
+    Random r = new Random();
+
+    public String genPass() {
+        String ret = "";
+        for (int i = 0; i < SIZE; i++) {
+            int idx = r.nextInt(POOL.length());
+            ret = ret.concat(POOL.substring(idx, idx + 1));
+        }
+
+        return ret;
+    }
 
     public JSONObject createJSON(Pair<Object, Object>... indices) {
         /**
@@ -114,49 +127,44 @@ public class MainActivity2 extends AppCompatActivity {
         return url;
     }
 
-    public String request(String dest, Method method, JSONObject data) {
+    public String request(String dest, Method method, JSONObject data) throws Exception {
+        URL url = null;
         try {
-            URL url = null;
-            try {
-                url = new URL(formatURL(dest, data));
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            HttpURLConnection conn = null;
-            try {
-                conn = (HttpURLConnection) url.openConnection(); // open request connection with server
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                conn.setRequestMethod(method.toString()); // set request method
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            }
-
-            BufferedReader br = null;
-            try {
-                br = new BufferedReader(new InputStreamReader(conn.getInputStream())); // create input buffer which chunks response data
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            assert br != null;
-            String strCurrentLine = "";
-            String allText = "";
-            try {
-                strCurrentLine = br.readLine();
-                while (strCurrentLine != null) { // adds each chunk until runs out
-                    allText = allText.concat(strCurrentLine); // concats data
-                    strCurrentLine = br.readLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return allText;
-        } catch (Exception e) {
+            url = new URL(formatURL(dest, data));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection) url.openConnection(); // open request connection with server
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            conn.setRequestMethod(method.toString()); // set request method
+        } catch (ProtocolException e) {
             e.printStackTrace();
         }
 
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(conn.getInputStream())); // create input buffer which chunks response data
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert br != null;
+        String strCurrentLine = "";
+        String allText = "";
+        try {
+            strCurrentLine = br.readLine();
+            while (strCurrentLine != null) { // adds each chunk until runs out
+                allText = allText.concat(strCurrentLine); // concats data
+                strCurrentLine = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return allText;
     }
 
 
@@ -171,7 +179,7 @@ public class MainActivity2 extends AppCompatActivity {
         LOGIN.setOnClickListener(v ->
         {
             Thread thread = new Thread(() -> {
-                
+
             });
         });
     }
