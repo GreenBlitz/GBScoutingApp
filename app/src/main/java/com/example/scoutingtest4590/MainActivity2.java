@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -169,16 +170,28 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws NumberFormatException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        TextView ENTER_PIN = findViewById(R.id.ENTER_PIN);
+        EditText PIN = (EditText) findViewById(R.id.ENTER_PIN);
         Button LOGIN = findViewById(R.id.LOGIN);
 
         LOGIN.setOnClickListener(v ->
         {
             Thread thread = new Thread(() -> {
+                String pass = genPass();
+                int pin = Integer.parseInt(PIN.getText().toString());
+                JSONObject data = createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin));
+                Method method = Method.GET;
+                String destURL = ""; // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
+                String responseData = "Request Failed";
+                try {
+                    responseData = request(destURL, method, data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                PIN.setText(responseData);
 
             });
         });
