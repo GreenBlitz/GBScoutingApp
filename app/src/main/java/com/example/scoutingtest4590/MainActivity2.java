@@ -1,6 +1,9 @@
 package com.example.scoutingtest4590;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 import android.widget.Button;
@@ -39,13 +42,21 @@ public class MainActivity2 extends AppCompatActivity {
         EditText PIN = (EditText) findViewById(R.id.ENTER_PIN);
         Button LOGIN = findViewById(R.id.LOGIN);
 
+        SharedPreferences sharedPref = MainActivity2.this.getPreferences(Context.MODE_PRIVATE);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
+        if (sharedPref.getString("password", "0").equals("0")) {
+            editor.putString("password", genPass());
+            editor.apply();
+        }
+
+
         LOGIN.setOnClickListener(v -> {
             Thread thread = new Thread(() -> {
-                String pass = genPass();
+                String pass = sharedPref.getString("password", "0");
                 String content = PIN.getText().toString();
                 int pin = Integer.parseInt(content.equals("") ? "0" : content);
                 JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin));
-                Method method = Method.GET;
+                Net.Method method = Net.Method.GET;
                 String destURL = "http://192.168.111.125:5000/?"; // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
                 String responseData = "Request Failed";
                 try {
@@ -58,12 +69,14 @@ public class MainActivity2 extends AppCompatActivity {
             });
 
             thread.start();
-            while (activity.equals("")) {
+            long tStart = System.currentTimeMillis();
+            while (activity.equals("") && System.currentTimeMillis() - tStart < 5000) {
                 System.out.println("waiting");
             }
 
             switchActivities(activity);
         });
+
 
     }
 
@@ -72,9 +85,6 @@ public class MainActivity2 extends AppCompatActivity {
         switch (page) {
             case "scouter":
                 switchActivity = new Intent(this, ScouterActivity.class);
-                break;
-            case "coach":
-                switchActivity = new Intent(this, MainActivity.class);
                 break;
             default:
                 switchActivity = new Intent(this, ErrorActivity.class);

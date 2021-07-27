@@ -16,7 +16,6 @@
         tools:targetApi="m">
         <activity android:name=".ErrorActivity"></activity>
         <activity android:name=".ScouterActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
