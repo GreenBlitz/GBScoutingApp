@@ -9,7 +9,9 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
+
 import com.example.scoutingtest4590.util.Net;
+
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
         return ret;
     }
 
+    static String activity = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws NumberFormatException {
@@ -51,10 +54,17 @@ public class MainActivity2 extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 System.out.println(responseData);
+                activity = responseData;
             });
 
             thread.start();
+            while (activity.equals("")) {
+                System.out.println("waiting");
+            }
+
+            switchActivities(activity);
         });
+
     }
 
     public void switchActivities(String page) {
