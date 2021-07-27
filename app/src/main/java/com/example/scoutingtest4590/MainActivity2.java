@@ -63,6 +63,7 @@ public class MainActivity2 extends AppCompatActivity {
             e.printStackTrace(); // throws JSONException in case entry is unsuccessful
         }
 
+        System.out.println(ret);
         return ret;
     }
 
@@ -125,6 +126,7 @@ public class MainActivity2 extends AppCompatActivity {
             url = url.concat(item); // concat parameter to url augment
         }
 
+        System.out.println(url);
         return url;
     }
 
@@ -165,6 +167,8 @@ public class MainActivity2 extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println(allText);
         return allText;
     }
 
@@ -177,23 +181,24 @@ public class MainActivity2 extends AppCompatActivity {
         EditText PIN = (EditText) findViewById(R.id.ENTER_PIN);
         Button LOGIN = findViewById(R.id.LOGIN);
 
-        LOGIN.setOnClickListener(v ->
-        {
+        LOGIN.setOnClickListener(v -> {
             Thread thread = new Thread(() -> {
                 String pass = genPass();
-                int pin = Integer.parseInt(PIN.getText().toString());
+                String content = PIN.getText().toString();
+                int pin = Integer.parseInt(content.equals("") ? "0" : content);
                 JSONObject data = createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin));
                 Method method = Method.GET;
-                String destURL = ""; // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
+                String destURL = "http://192.168.111.125:5000/?"; // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
                 String responseData = "Request Failed";
                 try {
                     responseData = request(destURL, method, data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                PIN.setText(responseData);
-
+                System.out.println(responseData);
             });
+
+            thread.start();
         });
     }
 
