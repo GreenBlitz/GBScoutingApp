@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import scoutingtest4590.util.Constants;
+
 public class ScoutingEntry {
     private ArrayList<ScoutingData<Object>> gameEntry;
     public static final String dataSubdomain = "/scouter/send";
@@ -31,6 +33,12 @@ public class ScoutingEntry {
     }
 
     public void sendData() {
-        
+        ArrayList<Object> keys = new ArrayList<>(), values = new ArrayList<>();
+        for(ScoutingData<Object> data : gameEntry) {
+            keys.add(data.getKey());
+            values.add(data.getValue());
+        }
+
+        Net.request(Constants.Networking.serverURL, Method.POST, createJSON(keys, values));
     }
 }
