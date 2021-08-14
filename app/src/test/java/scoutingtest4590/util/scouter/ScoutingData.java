@@ -26,6 +26,6 @@ public class ScoutingData<T> {
     }
 
     public String toString() {
-        return String.format(this.value instanceof String ? "{\"%s\": \"%s\"}" : "{\"%s\": %s}", this.key, this.value.toString());
+        return String.format(this.value instanceof String ? "\"%s\": \"%s\"" : "\"%s\": %s", this.key, this.value.toString());
     }
 }
