@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".MainActivity">
+
+	<TableLayout
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:stretchColumns="2"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.054">
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<EditText
+				android:id="@+id/editTextNumber"
+				android:layout_width="114dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start"
+				android:ems="10"
+				android:hint="@string/team"
+				android:inputType="number"
+				android:autofillHints="text1" />
+
+			<ImageView
+				android:id="@+id/imageView"
+				android:layout_width="174dp"
+				android:layout_height="match_parent"
+				android:contentDescription="@string/myimage"
+				tools:ignore="ImageContrastCheck"
+				tools:srcCompat="@tools:sample/avatars" />
+
+			<EditText
+				android:id="@+id/editTextNumber2"
+				android:layout_width="104dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:autofillHints="text2"
+				android:ems="10"
+				android:hint="@string/game"
+				android:inputType="number" />
+
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+
+			<TextView
+				android:id="@+id/emptySpace1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<TextView
+				android:id="@+id/textView2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/auto_balls"
+				android:textAlignment="center"
+				android:textSize="16sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/emptySpace2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<Button
+				android:id="@+id/lessAutoBalls"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:onClick="addPoints"
+				android:text="@string/negative" />
+
+			<TextView
+				android:id="@+id/autoBalls"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:text="@string/zero"
+				android:textAlignment="center"
+				android:textSize="34sp"
+				android:textStyle="bold" />
+
+			<Button
+				android:id="@+id/moreAutoBalls"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:onClick="addPoints"
+				android:text="@string/positive" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+
+			<TextView
+				android:id="@+id/emptySpace3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<TextView
+				android:id="@+id/textView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/cycles"
+				android:textAlignment="center"
+				android:textSize="16sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/emptySpace4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+
+			<Button
+				android:id="@+id/lessCycles"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:onClick="addPoints"
+				android:text="@string/negative" />
+
+			<TextView
+				android:id="@+id/cycles"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:text="@string/zero"
+				android:textAlignment="center"
+				android:textSize="34sp"
+				android:textStyle="bold" />
+
+			<Button
+				android:id="@+id/moreCycles"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:onClick="addPoints"
+				android:text="@string/positive" />
+
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<TextView
+				android:id="@+id/emptySpace"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<TextView
+				android:id="@+id/textView3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/balls_per_cycle"
+				android:textAlignment="center"
+				android:textSize="16sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/emptySpace5"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<Button
+				android:id="@+id/lessBalls"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:onClick="addPoints"
+				android:text="@string/negative" />
+
+			<TextView
+				android:id="@+id/ballsPerCycle"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:text="@string/zero"
+				android:textAlignment="center"
+				android:textSize="34sp"
+				android:textStyle="bold" />
+
+			<Button
+				android:id="@+id/moreBalls"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:onClick="addPoints"
+				android:text="@string/positive" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<TextView
+				android:id="@+id/emptySpace8"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<Switch
+				android:id="@+id/climbedSwitch"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:text="@string/climbed"
+				android:textAlignment="center"
+				android:textSize="14sp"
+				tools:ignore="UseSwitchCompatOrMaterialXml" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+
+			<TextView
+				android:id="@+id/emptySpace9"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<TextView
+				android:id="@+id/textView4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Color Wheel:"
+				android:textAlignment="center"
+				android:textSize="16sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/emptySpace10"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+
+			<CheckBox
+				android:id="@+id/checkBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="NO" />
+
+			<CheckBox
+				android:id="@+id/checkBox2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="BY # OF ROTATIONS" />
+
+			<CheckBox
+				android:id="@+id/checkBox3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="BY COLOR" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+
+			<TextView
+				android:id="@+id/emptySpace11"
+				android:layout_width="wrap_content"
+				android:layout_height="53dp" />
+		</TableRow>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<TextView
+				android:id="@+id/emptySpace7"
+				android:layout_width="wrap_content"
+				android:layout_height="50dp" />
+
+			<Button
+				android:id="@+id/SUBMIT_BUTTON"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/rounded_button"
+				android:backgroundTint="@color/purple_200"
+				android:onClick="submit"
+				android:text="@string/submit"
+				tools:ignore="OnClick" />
+
+			<TextView
+				android:id="@+id/emptySpace6"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+		</TableRow>
+
+	</TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

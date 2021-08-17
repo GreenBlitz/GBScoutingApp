@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Scouting-App</string>
+	<string name="app_name">Scouting-App</string>
+	<string name="team">Team #</string>
+	<string name="game">Game #</string>
+	<string name="balls_per_cycle">Balls per cycle:</string>
+	<string name="cycles">Cycles:</string>
+	<string name="auto_balls">Auto Balls:</string>
+	<string name="zero">0</string>
+	<string name="negative">-</string>
+	<string name="positive">+</string>
+	<string name="myimage">MyImage</string>
+	<string name="submit">SUBMIT</string>
+	<string name="climbed">CLIMBED</string>
 </resources>
