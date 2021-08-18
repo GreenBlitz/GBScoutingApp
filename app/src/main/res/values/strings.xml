@@ -1,14 +1,19 @@
 <resources>
-	<string name="app_name">Scouting-App</string>
+	<string name="app_name">Scouting App 4590</string>
 	<string name="team">Team #</string>
 	<string name="game">Game #</string>
-	<string name="balls_per_cycle">Balls per cycle:</string>
 	<string name="cycles">Cycles:</string>
 	<string name="auto_balls">Auto Balls:</string>
+	<string name="Teleop">Teleop Balls:</string>
 	<string name="zero">0</string>
 	<string name="negative">-</string>
 	<string name="positive">+</string>
 	<string name="myimage">MyImage</string>
 	<string name="submit">SUBMIT</string>
 	<string name="climbed">CLIMBED</string>
+	<string name="comments">Comments</string>
+	<string name="no">NO</string>
+	<string name="by_of_rotations">BY # OF ROTATIONS</string>
+	<string name="color_wheel">Color Wheel:</string>
+	<string name="by_color">BY COLOR</string>
 </resources>
