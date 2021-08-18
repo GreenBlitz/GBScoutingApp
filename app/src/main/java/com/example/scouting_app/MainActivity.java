@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 
 		cyclesView = findViewById(R.id.cycles);
-		autoBallsView = findViewById(R.id.cycles);
+		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);
 	}
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
 				teleopBalls++;
 				break;
 			case R.id.lessTeleBalls:
-				if(teleopBalls > 0) teleopBalls++;
+				if(teleopBalls > 0) teleopBalls--;
 				break;
 		}
 
