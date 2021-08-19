@@ -2,9 +2,11 @@ package com.example.scouting_app;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Vibrator; //haha
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity
 	boolean didClimb = false;
 	@SuppressLint("WrongViewCast")
 //	TextInputEditText commentsView = findViewById(R.id.commentsTextBox);
+
+	private Vibrator myVib;
 
 	private TextView autoBallsView;
 	private TextView cyclesView;
@@ -31,11 +35,13 @@ public class MainActivity extends AppCompatActivity
 		cyclesView = findViewById(R.id.cycles);
 		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);
+		myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 	}
 
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
 	public void addPoints(View v)
 	{
+		myVib.vibrate(35); //haptic feedback for buttons
 		switch (v.getId())
 		{
 			case R.id.moreAutoBalls:
@@ -66,8 +72,12 @@ public class MainActivity extends AppCompatActivity
 
 	public void submit(View view)
 	{
+		//TODO: fix commentsView issue & redo color wheel
 		@SuppressLint("UseSwitchCompatOrMaterialCode") Switch climbed = findViewById(R.id.climbedSwitch);
 		didClimb = climbed.isChecked();
 //		String commentsText = Objects.requireNonNull(commentsView.getText()).toString();
+
+		recreate();
+		Toast.makeText(getApplicationContext(), "Scouting prompt submitted!", Toast.LENGTH_SHORT).show();
 	}
 }

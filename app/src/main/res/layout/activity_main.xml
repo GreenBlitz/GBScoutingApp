@@ -42,7 +42,7 @@
 
 			<EditText
 				android:id="@+id/editTextNumber2"
-				android:layout_width="107dp"
+				android:layout_width="67dp"
 				android:layout_height="wrap_content"
 				android:layout_gravity="end"
 				android:autofillHints="text2"
@@ -50,8 +50,8 @@
 				android:hint="@string/game"
 				android:inputType="number"
 				android:textAlignment="center"
-				tools:ignore="RtlCompat,TextContrastCheck"
-				android:textColorHint="@color/white" />
+				android:textColorHint="@color/white"
+				tools:ignore="RtlCompat,TextContrastCheck" />
 
 		</TableRow>
 
@@ -107,7 +107,7 @@
 
 			<Button
 				android:id="@+id/moreCycles"
-				android:layout_width="match_parent"
+				android:layout_width="116dp"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
@@ -338,7 +338,6 @@
 		android:layout_gravity="center"
 		android:layout_weight="1"
 		android:background="@drawable/rounded_button"
-		android:backgroundTint="@color/purple_200"
 		android:onClick="submit"
 		android:text="@string/submit"
 		android:textSize="20sp"
