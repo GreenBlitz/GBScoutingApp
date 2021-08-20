@@ -16,11 +16,11 @@ public class MainActivity extends AppCompatActivity
 	int autoBalls = 0;
 	int teleopBalls = 0;
 	boolean didClimb = false;
+	boolean GreenBlitzColors = false;
 	@SuppressLint("WrongViewCast")
 //	TextInputEditText commentsView = findViewById(R.id.commentsTextBox);
 
 	private Vibrator myVib;
-
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		cyclesView = findViewById(R.id.cycles);
 		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);
@@ -62,6 +61,9 @@ public class MainActivity extends AppCompatActivity
 			case R.id.lessTeleBalls:
 				if(teleopBalls > 0) teleopBalls--;
 				break;
+			case R.id.imageView:
+//				toggleTheme();
+				break;
 		}
 
 		cyclesView.setText(String.valueOf(cycles));
@@ -70,14 +72,22 @@ public class MainActivity extends AppCompatActivity
 		//This is a weird way to do it but it's the only one that works ¯\_(ツ)_/¯
 	}
 
-	public void submit(View view)
+	public void submit(View v)
 	{
 		//TODO: fix commentsView issue & redo color wheel
 		@SuppressLint("UseSwitchCompatOrMaterialCode") Switch climbed = findViewById(R.id.climbedSwitch);
 		didClimb = climbed.isChecked();
 //		String commentsText = Objects.requireNonNull(commentsView.getText()).toString();
-
+		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
 		recreate();
-		Toast.makeText(getApplicationContext(), "Scouting prompt submitted!", Toast.LENGTH_SHORT).show();
 	}
+
+	public void toggleTheme()
+	{
+		if (GreenBlitzColors) getTheme().applyStyle(R.style.Theme_ScoutingApp, true);
+		else getTheme().applyStyle(R.style.Theme_GreenBlitzColors, true);
+		GreenBlitzColors = !GreenBlitzColors;
+		setContentView(R.layout.activity_main);
+	}
+
 }

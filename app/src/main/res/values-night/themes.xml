@@ -6,7 +6,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color (GreenBlitz branded color scheme) -->
         <item name="colorSecondary">@color/GB_green_1</item>
         <item name="colorSecondaryVariant">@color/GB_green_2</item>

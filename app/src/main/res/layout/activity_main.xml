@@ -38,7 +38,8 @@
 				android:layout_height="match_parent"
 				android:contentDescription="@string/myimage"
 				tools:ignore="ImageContrastCheck"
-				android:background="@drawable/__youtube_header" />
+				android:background="@drawable/__youtube_header"
+				android:onClick="addPoints" />
 
 			<EditText
 				android:id="@+id/editTextNumber2"
@@ -292,7 +293,7 @@
 			android:layout_height="match_parent">
 
 			<CheckBox
-				android:id="@+id/checkBox"
+				android:id="@+id/checkBox1"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/no"
