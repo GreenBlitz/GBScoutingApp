@@ -1,6 +1,7 @@
 package com.example.scouting_app;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator; //haha
 import android.view.View;
@@ -61,9 +62,6 @@ public class MainActivity extends AppCompatActivity
 			case R.id.lessTeleBalls:
 				if(teleopBalls > 0) teleopBalls--;
 				break;
-			case R.id.imageView:
-//				toggleTheme();
-				break;
 		}
 
 		cyclesView.setText(String.valueOf(cycles));
@@ -80,10 +78,12 @@ public class MainActivity extends AppCompatActivity
 //		String commentsText = Objects.requireNonNull(commentsView.getText()).toString();
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
 		recreate();
+
 	}
 
 	public void toggleTheme()
 	{
+		//not yet implemented
 		if (GreenBlitzColors) getTheme().applyStyle(R.style.Theme_ScoutingApp, true);
 		else getTheme().applyStyle(R.style.Theme_GreenBlitzColors, true);
 		GreenBlitzColors = !GreenBlitzColors;

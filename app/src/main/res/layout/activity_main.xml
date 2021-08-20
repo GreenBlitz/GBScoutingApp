@@ -16,44 +16,26 @@
 
 		<TableRow
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="wrap_content"
+			>
 
-			<EditText
-				android:id="@+id/editTextNumber"
-				android:layout_width="107dp"
-				android:layout_height="wrap_content"
-				android:layout_gravity="start"
-				android:autofillHints="text1"
-				android:ems="10"
-				android:hint="@string/team"
-				android:inputType="number"
-				android:textAlignment="center"
-				tools:ignore="RtlCompat,TextContrastCheck"
-				android:textColorHint="@color/white"
-				android:maxLength="4"/>
-
-			<ImageView
-				android:id="@+id/imageView"
-				android:layout_width="180dp"
+			<TextView
+				android:id="@+id/editTextNumber1"
+				android:text="TEAM #"
+				android:textColor="@color/white"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
-				android:contentDescription="@string/myimage"
-				tools:ignore="ImageContrastCheck"
-				android:background="@drawable/__youtube_header"
-				android:onClick="addPoints" />
+				android:textAlignment="center" />
 
-			<EditText
+			<TextView
 				android:id="@+id/editTextNumber2"
-				android:layout_width="67dp"
-				android:layout_height="wrap_content"
-				android:layout_gravity="end"
-				android:autofillHints="text2"
-				android:ems="10"
-				android:hint="@string/game"
-				android:inputType="number"
-				android:textAlignment="center"
-				android:textColorHint="@color/white"
-				tools:ignore="RtlCompat,TextContrastCheck" />
-
+				android:text="GAME #"
+				android:textColor="@color/white"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:textAlignment="center"/>
 		</TableRow>
 
 		<TableRow
@@ -61,13 +43,9 @@
 			android:layout_height="match_parent">
 
 			<TextView
-				android:id="@+id/emptySpace1"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
-
-			<TextView
 				android:id="@+id/textView2"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="wrap_content"
 				android:text="@string/cycles"
 				android:textAlignment="center"
@@ -75,10 +53,6 @@
 				android:textSize="16sp"
 				android:textStyle="bold" />
 
-			<TextView
-				android:id="@+id/emptySpace2"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
 		</TableRow>
 
 		<TableRow
@@ -87,18 +61,21 @@
 
 			<Button
 				android:id="@+id/lessCycles"
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
 				android:text="@string/negative"
 				tools:ignore="DuplicateSpeakableTextCheck"
 				android:textSize="20sp"
-				android:textStyle="bold" />
+				android:textStyle="bold"
+				/>
 
 			<TextView
 				android:id="@+id/cycles"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:text="@string/zero"
 				android:textAlignment="center"
@@ -108,7 +85,8 @@
 
 			<Button
 				android:id="@+id/moreCycles"
-				android:layout_width="116dp"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
@@ -124,13 +102,9 @@
 			android:layout_height="match_parent">
 
 			<TextView
-				android:id="@+id/emptySpace3"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
-
-			<TextView
 				android:id="@+id/textView"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="wrap_content"
 				android:text="@string/auto_balls"
 				android:textAlignment="center"
@@ -138,10 +112,6 @@
 				android:textSize="16sp"
 				android:textStyle="bold" />
 
-			<TextView
-				android:id="@+id/emptySpace4"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
 		</TableRow>
 
 		<TableRow
@@ -150,7 +120,8 @@
 
 			<Button
 				android:id="@+id/lessAutoBalls"
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
@@ -161,7 +132,8 @@
 
 			<TextView
 				android:id="@+id/autoBalls"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:text="@string/zero"
 				android:textAlignment="center"
@@ -171,7 +143,8 @@
 
 			<Button
 				android:id="@+id/moreAutoBalls"
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
@@ -187,13 +160,9 @@
 			android:layout_height="match_parent">
 
 			<TextView
-				android:id="@+id/emptySpace"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
-
-			<TextView
 				android:id="@+id/textView3"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="wrap_content"
 				android:text="@string/Teleop"
 				android:textAlignment="center"
@@ -201,10 +170,6 @@
 				android:textSize="16sp"
 				android:textStyle="bold" />
 
-			<TextView
-				android:id="@+id/emptySpace5"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
 		</TableRow>
 
 		<TableRow
@@ -213,7 +178,8 @@
 
 			<Button
 				android:id="@+id/lessTeleBalls"
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
@@ -223,7 +189,8 @@
 
 			<TextView
 				android:id="@+id/teleopBalls"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:text="@string/zero"
 				android:textAlignment="center"
@@ -233,7 +200,8 @@
 
 			<Button
 				android:id="@+id/moreTeleBalls"
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="match_parent"
 				android:background="@drawable/rounded_button"
 				android:onClick="addPoints"
@@ -245,22 +213,32 @@
 
 		<TableRow
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:gravity="center">
 
-			<TextView
-				android:id="@+id/emptySpace8"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
+			<Space
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1" />
 
 			<Switch
 				android:id="@+id/climbedSwitch"
-				android:layout_width="match_parent"
-				android:layout_height="50dp"
+				android:layout_width="0dp"
+				android:layout_height="fill_parent"
 				android:text="@string/climbed"
 				android:textAlignment="center"
+				android:textColor="@color/white"
 				android:textSize="14sp"
-				tools:ignore="UseSwitchCompatOrMaterialXml"
-				android:textColor="@color/white" />
+				android:layout_weight="2"
+				tools:ignore="Suspicious0dp,UseSwitchCompatOrMaterialXml" />
+
+
+			<Space
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
 		</TableRow>
 
 		<TableRow
@@ -268,13 +246,9 @@
 			android:layout_height="match_parent">
 
 			<TextView
-				android:id="@+id/emptySpace9"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
-
-			<TextView
 				android:id="@+id/textView4"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="wrap_content"
 				android:text="@string/color_wheel"
 				android:textAlignment="center"
@@ -282,10 +256,6 @@
 				android:textStyle="bold"
 				android:textColor="@color/white" />
 
-			<TextView
-				android:id="@+id/emptySpace10"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
 		</TableRow>
 
 		<TableRow
@@ -293,22 +263,17 @@
 			android:layout_height="match_parent">
 
 			<CheckBox
-				android:id="@+id/checkBox1"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/no"
-				android:textColor="@color/white" />
-
-			<CheckBox
 				android:id="@+id/checkBox2"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="wrap_content"
 				android:text="@string/by_of_rotations"
 				android:textColor="@color/white"/>
 
 			<CheckBox
 				android:id="@+id/checkBox3"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
+				android:layout_weight="1"
 				android:layout_height="wrap_content"
 				android:text="@string/by_color"
 				android:textColor="@color/white" />
@@ -334,15 +299,15 @@
 
 	<Button
 		android:id="@+id/SUBMIT_BUTTON"
-		android:layout_width="184dp"
-		android:layout_height="0dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:layout_weight="1"
+		android:layout_weight="0.4"
 		android:background="@drawable/rounded_button"
 		android:onClick="submit"
 		android:text="@string/submit"
 		android:textSize="20sp"
 		android:textStyle="bold"
-		tools:ignore="OnClick" />
+		tools:ignore="OnClick,Suspicious0dp" />
 
 </LinearLayout>
