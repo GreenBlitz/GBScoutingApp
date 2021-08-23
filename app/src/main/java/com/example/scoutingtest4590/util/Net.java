@@ -1,5 +1,6 @@
 package com.example.scoutingtest4590.util;
 
+import android.util.Log;
 import android.util.Pair;
 
 import org.json.JSONException;
@@ -106,7 +107,7 @@ public class Net {
         return url;
     }
 
-    public static String request(String dest, Method method, JSONObject data) throws Exception {
+    public static String request(String dest, Method method, JSONObject data, Pair<String, String>[] property) throws Exception {
         URL url = null;
         try {
             url = new URL(formatURL(dest, data));
@@ -124,7 +125,6 @@ public class Net {
         } catch (ProtocolException e) {
             e.printStackTrace();
         }
-
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(conn.getInputStream())); // create input buffer which chunks response data
@@ -148,6 +148,10 @@ public class Net {
         return allText;
     }
 
+    public static String request(String dest, Method method, JSONObject data) throws Exception {
+        return request(dest, method, data, new Pair[]{});
+    }
+
     public enum Method {
         GET("GET"),
         POST("POST"),
@@ -168,5 +172,51 @@ public class Net {
             return this.display;
         }
 
+    }
+
+    public static void getMatchesTbaApi(String eventKey){
+        URL url = null;
+        try {
+            url = new URL("https://www.thebluealliance.com/api/v3/event/"+eventKey+"/matches/simple");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection) url.openConnection(); // open request connection with server
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            conn.setRequestMethod("GET"); // set request method
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        try {
+            conn.setRequestProperty("X-TBA-Auth-Key", "nsydEycbcbK5YX4RK2eV9uoOBiFpkcivKdYlfFF0my3M6E9AvAqyB5ByrrQlYTjG");
+        }
+        catch (IllegalStateException e){
+            e.printStackTrace();
+        }
+        try {
+            //Log.d("error code", Integer.toString(conn.getResponseCode()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while (true) {
+                if ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                else{
+                    Log.d("debug", "over");
+                    break;
+                }
+            }
+            in.close();
+            Log.d("return data", Integer.toString(content.toString().length()));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
