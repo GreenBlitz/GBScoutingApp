@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
 	public void addPoints(View v) {
 		myVib.vibrate(Constants.ScoutingPrompt.vibratorOpTime); //haptic feedback for buttons
+
 		switch (v.getId()) {
 			case R.id.moreAutoBalls:
 				autoBalls++;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	@SuppressLint("WrongViewCast")
-	public void submit(View v) {
+	public void submit(View v) throws Exception {
 		boolean[] colorWheel = new boolean[checkBoxes.length];
 		for (int i = 0; i < colorWheel.length; i++) {
 			colorWheel[i] = checkBoxes[i].isChecked();
@@ -100,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
 		ScoutingData<Object> colorWheelInfoInfo = new ScoutingData<>("color wheel", colorWheel);
 		ScoutingData<Object> commentsInfo = new ScoutingData<>("comments", Objects.requireNonNull(commentsView.getText()).toString());
 
-		ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo, commentsInfo);
+		ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, commentsInfo,
+				cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo);
 		scoutingEntry.sendData();
 
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();

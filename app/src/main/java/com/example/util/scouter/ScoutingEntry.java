@@ -1,11 +1,16 @@
 package com.example.util.scouter;
 
+import static com.example.util.Net.createJSON;
+
+import com.example.util.Constants;
+import com.example.util.Net;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class ScoutingEntry {
 	private ArrayList<ScoutingData<Object>> gameEntry;
-	public static final String dataSubdomain = "/scouter/send";
+	public static final String dataSubdomain = "scouting";
 
 	public ScoutingEntry(ArrayList<ScoutingData<Object>> gameEntry) {
 		this.gameEntry = gameEntry;
@@ -29,13 +34,13 @@ public class ScoutingEntry {
 		gameEntry.add(data);
 	}
 
-	public void sendData() {
+	public void sendData() throws Exception {
 		ArrayList<Object> keys = new ArrayList<>(), values = new ArrayList<>();
 		for (ScoutingData<Object> data : gameEntry) {
 			keys.add(data.getKey());
 			values.add(data.getValue());
 		}
 
-//		Net.request(Constants.Networking.serverURL, Method.POST, createJSON(keys, values));
+		Net.request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values));
 	}
 }
