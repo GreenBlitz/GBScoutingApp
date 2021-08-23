@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class ScoutingEntry {
 	private ArrayList<ScoutingData<Object>> gameEntry;
-	public static final String dataSubdomain = "scouting";
+	public static final String dataSubdomain = "scouting/?";
 
 	public ScoutingEntry(ArrayList<ScoutingData<Object>> gameEntry) {
 		this.gameEntry = gameEntry;
@@ -41,6 +41,7 @@ public class ScoutingEntry {
 			values.add(data.getValue());
 		}
 
+		System.out.println("jayson" + createJSON(keys, values).toString());
 		Net.request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values));
 	}
 }

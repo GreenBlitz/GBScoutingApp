@@ -111,7 +111,8 @@ public class Net {
 	public static void request(String dest, Method method, JSONObject data, Pair<String, String>[] property) {
 		URL url = null;
 		try {
-			url = new URL(formatURL(dest, data));
+			System.out.println("formatted: " + formatURL(dest, data));
+			url = new URL("http://109.186.131.164:5000/"); //formatURL(dest, data));
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -131,6 +132,7 @@ public class Net {
 		}
 		BufferedReader br = null;
 		try {
+			System.out.println("der url pls:" + url.toString());
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream())); // create input buffer which chunks response data
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -151,7 +153,7 @@ public class Net {
 		System.out.println(allText);
 	}
 
-	public static void request(String dest, Method method, JSONObject data) throws Exception {
+	public static void request(String dest, Method method, JSONObject data) {
 		request(dest, method, data, new Pair[]{});
 	}
 

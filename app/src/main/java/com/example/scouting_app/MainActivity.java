@@ -17,6 +17,7 @@ import com.example.util.Constants;
 import com.example.util.scouter.ScoutingData;
 import com.example.util.scouter.ScoutingEntry;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -91,19 +92,22 @@ public class MainActivity extends AppCompatActivity {
 		for (int i = 0; i < colorWheel.length; i++) {
 			colorWheel[i] = checkBoxes[i].isChecked();
 		}
+		int gameID = 15;
+		int teamHash = 4590;
 
-		ScoutingData<Object> teamNumInfo = new ScoutingData<>("team #", findViewById(R.id.team).toString());
-		ScoutingData<Object> gameNumInfo = new ScoutingData<>("game #", findViewById(R.id.game).toString());
-		ScoutingData<Object> cyclesInfo = new ScoutingData<>("cycles", findViewById(R.id.cycles).toString());
-		ScoutingData<Object> teleOpBallsInfo = new ScoutingData<>("tele op balls", findViewById(R.id.teleopBalls).toString());
-		ScoutingData<Object> autoBallsInfo = new ScoutingData<>("autonomous balls", findViewById(R.id.autoBalls).toString());
+		ScoutingData<Object> teamNumInfo = new ScoutingData<>("teamHash", teamHash);
+		ScoutingData<Object> gameNumInfo = new ScoutingData<>("gameNum", gameID);
+		ScoutingData<Object> cyclesInfo = new ScoutingData<>("cycles", cycles);
+		ScoutingData<Object> teleOpBallsInfo = new ScoutingData<>("teleOpBalls", teleopBalls);
+		ScoutingData<Object> autoBallsInfo = new ScoutingData<>("autonomousBalls", autoBalls);
 		ScoutingData<Object> didClimbInfo = new ScoutingData<>("climbed", climbed.isChecked());
-		ScoutingData<Object> colorWheelInfoInfo = new ScoutingData<>("color wheel", colorWheel);
+		ScoutingData<Object> colorWheelInfoInfo = new ScoutingData<>("colorWheel", Arrays.toString(colorWheel).replace(" ", ""));
 		ScoutingData<Object> commentsInfo = new ScoutingData<>("comments", Objects.requireNonNull(commentsView.getText()).toString());
 
-		ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, commentsInfo,
-				cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo);
+		ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, commentsInfo, cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo);
+//		ScoutingEntry scoutingEntry = new ScoutingEntry();
 		scoutingEntry.sendData();
+
 
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();
