@@ -16,12 +16,11 @@
 
 		<TableRow
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			>
+			android:layout_height="wrap_content" >
 
 			<TextView
 				android:id="@+id/editTextNumber1"
-				android:text="TEAM #"
+				android:text="@string/team"
 				android:textColor="@color/white"
 				android:layout_width="0dp"
 				android:layout_weight="1"
@@ -30,7 +29,7 @@
 
 			<TextView
 				android:id="@+id/editTextNumber2"
-				android:text="GAME #"
+				android:text="@string/game"
 				android:textColor="@color/white"
 				android:layout_width="0dp"
 				android:layout_weight="1"

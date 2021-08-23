@@ -1,4 +1,4 @@
-package scoutingtest4590.util.scouter;
+package com.example.util.scouter;
 
 public class ScoutingData<T> {
     private String key;

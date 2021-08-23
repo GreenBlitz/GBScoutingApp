@@ -1,3 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Base application theme. -->
+	<style name="Theme.GreenBlitzColorsBad" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+		<!-- Primary brand color (GreenBlitz branded color scheme) -->
+		<item name="colorPrimary">@color/GB_green_3</item>
+		<item name="colorPrimaryVariant">@color/GB_green_4</item>
+		<item name="colorOnPrimary">@color/GB_yellow</item>
+		<!-- Secondary brand color (GreenBlitz branded color scheme) -->
+		<item name="colorSecondary">@color/GB_green_3</item>
+		<item name="colorSecondaryVariant">@color/GB_green_4</item>
+		<item name="colorOnSecondary">@color/GB_yellow</item>
+		<!-- Status bar color. -->
+		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+	</style>
 </resources>

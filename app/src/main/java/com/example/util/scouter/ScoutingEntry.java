@@ -1,10 +1,7 @@
-package scoutingtest4590.util.scouter;
+package com.example.util.scouter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-
-import scoutingtest4590.util.Constants;
 
 public class ScoutingEntry {
     private ArrayList<ScoutingData<Object>> gameEntry;
@@ -29,7 +26,7 @@ public class ScoutingEntry {
     }
 
     public <T> void addData(ScoutingData<T> data) {
-        gameEntry.add(data);
+//        gameEntry.add(data);
     }
 
     public void sendData() {
@@ -39,6 +36,6 @@ public class ScoutingEntry {
             values.add(data.getValue());
         }
 
-        Net.request(Constants.Networking.serverURL, Method.POST, createJSON(keys, values));
+//        Net.request(Constants.Networking.serverURL, Method.POST, createJSON(keys, values));
     }
 }

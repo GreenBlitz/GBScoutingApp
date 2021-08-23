@@ -5,8 +5,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#cacaca</color>
-    <color name="GB_black">#090909</color>
+    <color name="GB_black_1">#1A1A1A</color>
+    <color name="GB_black_2">#090909</color>
     <color name="GB_yellow">#e5dc16</color>
     <color name="GB_green_1">#127F14</color>
     <color name="GB_green_2">#22642F</color>
+    <color name="GB_green_3">#43B849</color>
+    <color name="GB_green_4">#14743A</color>
 </resources>
