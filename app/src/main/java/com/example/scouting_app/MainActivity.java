@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.util.Constants;
+import com.example.util.scouter.ScoutingData;
+import com.example.util.scouter.ScoutingEntry;
 
 import java.util.Objects;
 
@@ -22,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
 	int cycles = 0;
 	int autoBalls = 0;
 	int teleopBalls = 0;
-	boolean isClimb = false;
-	String commentsText = "";
 
 	boolean GreenBlitzColorsEnabled = false;
 	@SuppressLint("WrongViewCast")
@@ -34,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
+	@SuppressLint("UseSwitchCompatOrMaterialCode")
+	private Switch climbed;
 
 	@SuppressLint({"WrongViewCast", "CutPasteId", "WrongViewCast"})
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
 		commentsView = findViewById(R.id.commentsTextBox);
 		myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 		checkBoxes = new CheckBox[2];
-		checkBoxes[0] = findViewById(R.id.checkBox2);
-		checkBoxes[1] = findViewById(R.id.checkBox3);
+		checkBoxes[0] = findViewById(R.id.rotationCheckBox);
+		checkBoxes[1] = findViewById(R.id.colorCheckBox);
+		climbed = findViewById(R.id.climbedSwitch);
 	}
 
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
@@ -84,14 +86,22 @@ public class MainActivity extends AppCompatActivity {
 
 	@SuppressLint("WrongViewCast")
 	public void submit(View v) {
-		@SuppressLint("UseSwitchCompatOrMaterialCode") Switch climbed = findViewById(R.id.climbedSwitch);
-		isClimb = climbed.isChecked();
-		commentsText = Objects.requireNonNull(commentsView.getText()).toString();
-
 		boolean[] colorWheel = new boolean[checkBoxes.length];
 		for (int i = 0; i < colorWheel.length; i++) {
 			colorWheel[i] = checkBoxes[i].isChecked();
 		}
+
+		ScoutingData<Object> teamNumInfo = new ScoutingData<>("team #", findViewById(R.id.team).toString());
+		ScoutingData<Object> gameNumInfo = new ScoutingData<>("game #", findViewById(R.id.game).toString());
+		ScoutingData<Object> cyclesInfo = new ScoutingData<>("cycles", findViewById(R.id.cycles).toString());
+		ScoutingData<Object> teleOpBallsInfo = new ScoutingData<>("tele op balls", findViewById(R.id.teleopBalls).toString());
+		ScoutingData<Object> autoBallsInfo = new ScoutingData<>("autonomous balls", findViewById(R.id.autoBalls).toString());
+		ScoutingData<Object> didClimbInfo = new ScoutingData<>("climbed", climbed.isChecked());
+		ScoutingData<Object> colorWheelInfoInfo = new ScoutingData<>("color wheel", colorWheel);
+		ScoutingData<Object> commentsInfo = new ScoutingData<>("comments", Objects.requireNonNull(commentsView.getText()).toString());
+
+		ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo, commentsInfo);
+		scoutingEntry.sendData();
 
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();
