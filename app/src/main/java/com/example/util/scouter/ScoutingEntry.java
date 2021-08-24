@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class ScoutingEntry {
 	private ArrayList<ScoutingData<Object>> gameEntry;
-	public static final String dataSubdomain = "scouting/?";
+	public static final String dataSubdomain = "scouter/send?";
 
 	public ScoutingEntry(ArrayList<ScoutingData<Object>> gameEntry) {
 		this.gameEntry = gameEntry;

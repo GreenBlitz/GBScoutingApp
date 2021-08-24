@@ -81,10 +81,12 @@ public class Net {
 
 		String url = destURL;
 
-		Iterator<String> keys = data.keys(); // key iterator
-		boolean following = false; // following item has & since it adds upon previous item
+		url = url.concat("json=" + data.toString());
 
-		while (keys.hasNext()) { // until inserted all keys
+//		Iterator<String> keys = data.keys(); // key iterator
+//		boolean following = false; // following item has & since it adds upon previous item
+
+		/*while (keys.hasNext()) { // until inserted all keys
 			String key = keys.next();
 			String value = "null";
 			try {
@@ -102,13 +104,14 @@ public class Net {
 
 			item = item.concat(String.format("%s=%s", key, value)); // formats http parameter protocol with values
 			url = url.concat(item); // concat parameter to url augment
-		}
+		}*/
 
 		System.out.println(url);
 		return url;
 	}
 
 	public static void request(String dest, Method method, JSONObject data, Pair<String, String>[] property) {
+		System.out.println("json:" + data.toString());
 		URL url = null;
 		try {
 			System.out.println("formatted url: " + formatURL(dest, data));

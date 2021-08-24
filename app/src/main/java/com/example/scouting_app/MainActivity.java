@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 			ScoutingData<Object> didClimbInfo = new ScoutingData<>("climbed", climbed.isChecked());
 			ScoutingData<Object> colorWheelInfoInfo = new ScoutingData<>("colorWheel", Arrays.toString(colorWheel).replace(" ", ""));
 			ScoutingData<Object> commentsInfo = new ScoutingData<>("comments", Objects.requireNonNull(commentsView.getText()).toString());
+			ScoutingData<Object> uid = new ScoutingData<>("id", "");
+			ScoutingData<Object> psw = new ScoutingData<>("psw", "");
 
 			ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, commentsInfo, cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo);
 			try {
