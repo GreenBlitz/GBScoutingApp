@@ -57,7 +57,7 @@ public class MainActivity2 extends AppCompatActivity {
                 int pin = Integer.parseInt(content.equals("") ? "0" : content); // protection from parsing error for empty value in PIN
                 JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin)); // generate JSON with password and PIN for auth
                 Net.Method method = Net.Method.GET;
-                String destURL = "http://192.168.111.125:5000/?"; // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
+                String destURL = "http://192.168.237.125:5000/auth/register?"; // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
                 String responseData = "Request Failed";
                 try {
                     responseData = Net.request(destURL, method, data); // send authentication request
