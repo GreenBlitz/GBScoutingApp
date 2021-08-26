@@ -15,4 +15,8 @@
     <color name="GB_green_2">#22642F</color>
     <color name="GB_green_3">#43B849</color>
     <color name="GB_green_4">#14743A</color>
+    <color name="cyan">#6BFFFF</color>
+    <color name="redAllianceButton">#FFFF0000</color>
+    <color name="blueAllianceButton">#FF0000FF</color>
+    <color name="qualButtonColor">#FF000000</color>
 </resources>
