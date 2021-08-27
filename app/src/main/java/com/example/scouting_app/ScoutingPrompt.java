@@ -3,7 +3,7 @@ package com.example.scouting_app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
+import android.os.Vibrator; //haha
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -17,7 +17,6 @@ import com.example.util.Constants;
 import com.example.util.scouter.ScoutingData;
 import com.example.util.scouter.ScoutingEntry;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class ScoutingPrompt extends AppCompatActivity {
@@ -29,7 +28,8 @@ public class ScoutingPrompt extends AppCompatActivity {
 	boolean GreenBlitzColorsEnabled = false;
 	@SuppressLint("WrongViewCast")
 
-	private CheckBox[] checkBoxes;
+	private CheckBox RouletteWheelByRotations;
+	private CheckBox RouletteWheelByColor;
 	private EditText commentsView;
 	private Vibrator vibrator;
 	private TextView autoBallsView;
@@ -49,9 +49,8 @@ public class ScoutingPrompt extends AppCompatActivity {
 		teleopBallsView = findViewById(R.id.teleopBalls);
 		commentsView = findViewById(R.id.commentsTextBox);
 		vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-		checkBoxes = new CheckBox[2];
-		checkBoxes[0] = findViewById(R.id.rotationCheckBox);
-		checkBoxes[1] = findViewById(R.id.colorCheckBox);
+		RouletteWheelByRotations = findViewById(R.id.rotationCheckBox);
+		RouletteWheelByColor = findViewById(R.id.colorCheckBox);
 		climbed = findViewById(R.id.climbedSwitch);
 	}
 
@@ -87,25 +86,24 @@ public class ScoutingPrompt extends AppCompatActivity {
 	}
 
 	@SuppressLint("WrongViewCast")
-	public void submit(View v) throws Exception {
-		boolean[] colorWheel = new boolean[checkBoxes.length];
-		for (int i = 0; i < colorWheel.length; i++) {
-			colorWheel[i] = checkBoxes[i].isChecked();
-		}
+	public void submit(View v) {
 
 		Thread thread = new Thread(() -> {
 //			ScoutingData<Object> teamNumInfo = new ScoutingData<>("teamHash", teamHash);
 //			ScoutingData<Object> gameNumInfo = new ScoutingData<>("gameNum", gameID);
+
 			ScoutingData<Object> cyclesInfo = new ScoutingData<>("cycles", cycles);
 			ScoutingData<Object> teleOpBallsInfo = new ScoutingData<>("teleOpBalls", teleopBalls);
 			ScoutingData<Object> autoBallsInfo = new ScoutingData<>("autonomousBalls", autoBalls);
 			ScoutingData<Object> didClimbInfo = new ScoutingData<>("climbed", climbed.isChecked());
-			ScoutingData<Object> colorWheelInfoInfo = new ScoutingData<>("colorWheel", Arrays.toString(colorWheel).replace(" ", ""));
+			ScoutingData<Object> RouletteWheelByRotationsInfo = new ScoutingData<>("rouletteByRotations", RouletteWheelByRotations.isChecked() ? 1 : 0);
+			ScoutingData<Object> RouletteWheelByColorInfo = new ScoutingData<>("rouletteByColor", RouletteWheelByColor.isChecked() ? 1 : 0);
 			ScoutingData<Object> commentsInfo = new ScoutingData<>("comments", Objects.requireNonNull(commentsView.getText()).toString());
 			ScoutingData<Object> uid = new ScoutingData<>("id", "");
 			ScoutingData<Object> psw = new ScoutingData<>("psw", "");
 
-			ScoutingEntry scoutingEntry = new ScoutingEntry(cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo, commentsInfo);
+			ScoutingEntry scoutingEntry = new ScoutingEntry(cyclesInfo, teleOpBallsInfo, autoBallsInfo,
+					didClimbInfo, RouletteWheelByRotationsInfo, RouletteWheelByColorInfo, commentsInfo);
 			try {
 				scoutingEntry.sendData();
 			} catch (Exception e) {
