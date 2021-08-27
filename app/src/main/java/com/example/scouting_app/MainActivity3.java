@@ -148,8 +148,8 @@ public class MainActivity3 extends AppCompatActivity implements AdapterView.OnIt
 						: blue ? R.drawable.button_border_blue_clicked
 						: R.drawable.button_border_qual_clicked));
 
-				int textColor = getColor(red ? R.color.redAllianceButton :
-						blue ? R.color.blueAllianceButton :
+				int textColor = getColor(red ? R.color.redAllianceColor :
+						blue ? R.color.blueAllianceColor :
 								R.color.black);
 				button.setTextColor(textColor);
 				button.setOutlineAmbientShadowColor(textColor);
