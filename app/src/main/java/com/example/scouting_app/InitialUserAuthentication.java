@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 import java.util.Random;
 
-public class MainActivity2 extends AppCompatActivity {
+public class InitialUserAuthentication extends AppCompatActivity {
 	String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
 	int SIZE = 30; // pass size
 	Random r = new Random();
@@ -37,12 +37,12 @@ public class MainActivity2 extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) throws NumberFormatException {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main2);
+		setContentView(R.layout.activity_init_user_auth);
 
 		EditText PIN = (EditText) findViewById(R.id.ENTER_PIN);
 		Button LOGIN = findViewById(R.id.LOGIN);
 
-		SharedPreferences sharedPref = MainActivity2.this.getPreferences(Context.MODE_PRIVATE); // access phone memory
+		SharedPreferences sharedPref = InitialUserAuthentication.this.getPreferences(Context.MODE_PRIVATE); // access phone memory
 		@SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 		if (sharedPref.getString("password", "0").equals("0")) { // if didn't save anything for password must generate one and save it
 			editor.putString("password", genPass()); // save generated password

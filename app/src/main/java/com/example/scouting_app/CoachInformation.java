@@ -14,12 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity3 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CoachInformation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 	private int[] teamHashes;
 	private Spinner featureSelection;
 
-	public MainActivity3() {
+	public CoachInformation() {
 		super();
 
 		teamHashes = new int[]{4590, 1574, 1619, 1687, 1690, 254};
@@ -57,7 +57,7 @@ public class MainActivity3 extends AppCompatActivity implements AdapterView.OnIt
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main3);
+		setContentView(R.layout.activity_coach_information);
 		featureSelection = (Spinner) findViewById(R.id.feature_selection);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.features,
 				android.R.layout.simple_spinner_dropdown_item);

@@ -20,7 +20,7 @@ import com.example.util.scouter.ScoutingEntry;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class ScoutingPrompt extends AppCompatActivity {
 	//Scouting info
 	int cycles = 0;
 	int autoBalls = 0;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_scouting_prompt);
 
 		cyclesView = findViewById(R.id.cycles);
 		autoBallsView = findViewById(R.id.autoBalls);
@@ -125,6 +125,6 @@ public class MainActivity extends AppCompatActivity {
 		if (GreenBlitzColorsEnabled) getTheme().applyStyle(R.style.Theme_ScoutingApp, true);
 		else getTheme().applyStyle(R.style.Theme_GreenBlitzColorsGood, true);
 		GreenBlitzColorsEnabled = !GreenBlitzColorsEnabled;
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_scouting_prompt);
 	}
 }
