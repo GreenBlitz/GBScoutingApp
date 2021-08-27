@@ -92,12 +92,10 @@ public class MainActivity extends AppCompatActivity {
 		for (int i = 0; i < colorWheel.length; i++) {
 			colorWheel[i] = checkBoxes[i].isChecked();
 		}
-		int gameID = 15;
-		int teamHash = 4590;
 
 		Thread thread = new Thread(() -> {
-			ScoutingData<Object> teamNumInfo = new ScoutingData<>("teamHash", teamHash);
-			ScoutingData<Object> gameNumInfo = new ScoutingData<>("gameNum", gameID);
+//			ScoutingData<Object> teamNumInfo = new ScoutingData<>("teamHash", teamHash);
+//			ScoutingData<Object> gameNumInfo = new ScoutingData<>("gameNum", gameID);
 			ScoutingData<Object> cyclesInfo = new ScoutingData<>("cycles", cycles);
 			ScoutingData<Object> teleOpBallsInfo = new ScoutingData<>("teleOpBalls", teleopBalls);
 			ScoutingData<Object> autoBallsInfo = new ScoutingData<>("autonomousBalls", autoBalls);
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 			ScoutingData<Object> uid = new ScoutingData<>("id", "");
 			ScoutingData<Object> psw = new ScoutingData<>("psw", "");
 
-			ScoutingEntry scoutingEntry = new ScoutingEntry(teamNumInfo, gameNumInfo, commentsInfo, cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo);
+			ScoutingEntry scoutingEntry = new ScoutingEntry(cyclesInfo, teleOpBallsInfo, autoBallsInfo, didClimbInfo, colorWheelInfoInfo, commentsInfo);
 			try {
 				scoutingEntry.sendData();
 			} catch (Exception e) {
@@ -115,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		thread.start();
-
 
 
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
