@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 	private CheckBox[] checkBoxes;
 	private EditText commentsView;
-	private Vibrator myVib;
+	private Vibrator vibrator;
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);
 		commentsView = findViewById(R.id.commentsTextBox);
-		myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+		vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 		checkBoxes = new CheckBox[2];
 		checkBoxes[0] = findViewById(R.id.rotationCheckBox);
 		checkBoxes[1] = findViewById(R.id.colorCheckBox);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
 	public void addPoints(View v) {
-		myVib.vibrate(Constants.ScoutingPrompt.vibratorOpTime); //haptic feedback for buttons
+		vibrator.vibrate(Constants.ScoutingPrompt.vibrationTime); //haptic feedback for buttons
 
 		switch (v.getId()) {
 			case R.id.moreAutoBalls:
@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		thread.start();
-
 
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();

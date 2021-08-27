@@ -7,6 +7,6 @@ public class Constants {
 	}
 
 	public static class ScoutingPrompt {
-		public static final int vibratorOpTime = 35; //milliseconds
+		public static final int vibrationTime = 35; //milliseconds
 	}
 }
