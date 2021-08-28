@@ -15,29 +15,32 @@
         android:id="@+id/teamHeaders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/winRate"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:text="TextView"
+            android:gravity="center"
             tools:ignore="NestedWeights" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/teamHash"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:text="TextView" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/ranking"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:text="TextView" />
     </LinearLayout>
 
@@ -51,78 +54,96 @@
         <LinearLayout
             android:id="@+id/auto"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/titleAuto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/avgAuto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/maxAuto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/tele"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titleTele"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/avgTele"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/maxTele"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/cycle"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titleCycle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/avgCycle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/maxCycle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
         </LinearLayout>
     </LinearLayout>
@@ -144,19 +165,25 @@
             <TextView
                 android:id="@+id/titleClimbing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/percentClimbing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/lastClimbing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
         </LinearLayout>
 
@@ -170,19 +197,25 @@
             <TextView
                 android:id="@+id/titleWheelCount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="0.5"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/percentWheelCount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/lastWheelCount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
         </LinearLayout>
 
@@ -196,19 +229,25 @@
             <TextView
                 android:id="@+id/titleWheelColor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/percentWheelColor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/lastWheelColor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="TextView" />
         </LinearLayout>
     </LinearLayout>
@@ -217,31 +256,32 @@
         android:id="@+id/commentsInfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/comments"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
             android:text="TextView"
             tools:ignore="NestedWeights" />
 
         <LinearLayout
             android:id="@+id/gamesPlayed"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_margin="2dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titleGamesPlayed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/games_played"
                 android:autoSizeTextType="uniform"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:text="@string/games_played" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
