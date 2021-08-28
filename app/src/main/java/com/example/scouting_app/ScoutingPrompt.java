@@ -44,6 +44,8 @@ public class ScoutingPrompt extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scouting_prompt);
 
+		setTitle("Scouting Prompt");
+
 		cyclesView = findViewById(R.id.cycles);
 		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);

@@ -1,12 +1,12 @@
 package com.example.scouting_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CoachInfoTeam extends AppCompatActivity {
 
@@ -14,6 +14,8 @@ public class CoachInfoTeam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_info_team);
+
+        setTitle("Coach Information by Team");
 
         Spinner teamSelection = (Spinner) findViewById(R.id.teamHash);
         ArrayAdapter<CharSequence> matchAdapter = ArrayAdapter.createFromResource(this, R.array.features,

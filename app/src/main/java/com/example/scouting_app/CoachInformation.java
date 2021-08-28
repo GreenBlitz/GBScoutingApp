@@ -58,6 +58,9 @@ public class CoachInformation extends AppCompatActivity implements AdapterView.O
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_coach_information);
+
+		setTitle("Coach Information");
+
 		featureSelection = (Spinner) findViewById(R.id.feature_selection);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.features,
 				android.R.layout.simple_spinner_dropdown_item);

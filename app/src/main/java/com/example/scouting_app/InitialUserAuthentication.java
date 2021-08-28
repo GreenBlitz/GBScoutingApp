@@ -39,6 +39,8 @@ public class InitialUserAuthentication extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_init_user_auth);
 
+		setTitle("Initial User Authentication");
+
 		EditText PIN = (EditText) findViewById(R.id.ENTER_PIN);
 		Button LOGIN = findViewById(R.id.LOGIN);
 
@@ -81,7 +83,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 		Intent switchActivity;
 		switch (page) {
 			case "scouter": //TODO: shitty one-case switch statement, pls fix
-				switchActivity = new Intent(this, com.example.scouting_app.ScoutingPrompt.class);
+				switchActivity = new Intent(this, ScoutingPrompt.class);
 				break;
 			default:
 				switchActivity = new Intent(this, ErrorActivity.class);
