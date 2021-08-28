@@ -81,7 +81,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 		Intent switchActivity;
 		switch (page) {
 			case "scouter": //TODO: shitty one-case switch statement, pls fix
-				switchActivity = new Intent(this, com.example.scouting_app.ScouterActivity.class);
+				switchActivity = new Intent(this, com.example.scouting_app.ScoutingPrompt.class);
 				break;
 			default:
 				switchActivity = new Intent(this, ErrorActivity.class);
