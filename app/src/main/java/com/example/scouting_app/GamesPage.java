@@ -11,6 +11,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,77 +39,60 @@ public class GamesPage extends AppCompatActivity {
 		return jsonObject;
 	}
 
-	public void addGameJSON(JSONObject jsonObject) {
+	public void addGameJSON(JSONObject jsonObject) throws JSONException {
+		//temporary placeholder strings from the json
+		String redTeam1 = jsonObject.getString("redTeam1");
+		String redTeam2 = jsonObject.getString("redTeam2");
+		String redTeam3 = jsonObject.getString("redTeam3");
+		String blueTeam1 = jsonObject.getString("blueTeam1");
+		String blueTeam2 = jsonObject.getString("blueTeam2");
+		String blueTeam3 = jsonObject.getString("blueTeam3");
+		String matchTime = jsonObject.getString("matchTime");
+		String matchTag = jsonObject.getString("matchTag");
 
 	}
 
 	@SuppressLint("ResourceAsColor")
 	public void addGame(View v) {
-		Drawable redBackground = findViewById(R.id.redTeam11).getBackground();
-		Drawable blueBackground = findViewById(R.id.blueTeam11).getBackground();
+		Drawable redBackground = ResourcesCompat.getDrawable(getResources(), R.drawable.red_background, null);
+		Drawable blueBackground = ResourcesCompat.getDrawable(getResources(), R.drawable.blue_background, null);
+		int textColor = Color.parseColor("#FFFFFF");
 
 		TableRow newRow = new TableRow(this);
-
-		TextView redTeam1 = new TextView(this);
-		TextView redTeam2 = new TextView(this);
-		TextView redTeam3 = new TextView(this);
-		redTeam1.setBackground(redBackground);
-		redTeam2.setBackground(redBackground);
-		redTeam3.setBackground(redBackground);
-		redTeam1.setText("4590");
-		redTeam2.setText("4590");
-		redTeam3.setText("4590");
-		redTeam1.setTextColor(Color.parseColor("#FFFFFF"));
-		redTeam2.setTextColor(Color.parseColor("#FFFFFF"));
-		redTeam3.setTextColor(Color.parseColor("#FFFFFF"));
-		redTeam1.setTextSize(24);
-		redTeam2.setTextSize(24);
-		redTeam3.setTextSize(24);
-
-		TextView blueTeam1 = new TextView(this);
-		TextView blueTeam2 = new TextView(this);
-		TextView blueTeam3 = new TextView(this);
-		blueTeam1.setBackground(blueBackground);
-		blueTeam2.setBackground(blueBackground);
-		blueTeam3.setBackground(blueBackground);
-		blueTeam1.setText("4590");
-		blueTeam2.setText("4590");
-		blueTeam3.setText("4590");
-		blueTeam1.setTextColor(Color.parseColor("#FFFFFF"));
-		blueTeam2.setTextColor(Color.parseColor("#FFFFFF"));
-		blueTeam3.setTextColor(Color.parseColor("#FFFFFF"));
-		blueTeam1.setTextSize(24);
-		blueTeam2.setTextSize(24);
-		blueTeam3.setTextSize(24);
-
-		TextView matchTime = new TextView(this);
-		matchTime.setTextColor(Color.parseColor("#FFFFFF"));
-		matchTime.setText("16:20"); //temp line
-		matchTime.setTextSize(20);
-
-		TextView matchTag = new TextView(this);
-		matchTag.setTextColor(Color.parseColor("#FFFFFF"));
-		matchTag.setText("Qual 17 "); //temp line
-		matchTag.setTextSize(20);
-
 		TableRow redAlliance = new TableRow(this);
-		redAlliance.addView(matchTime);
-		redAlliance.addView(redTeam1);
-		redAlliance.addView(redTeam2);
-		redAlliance.addView(redTeam3);
-
 		TableRow blueAlliance = new TableRow(this);
-		blueAlliance.addView(matchTag);
-		blueAlliance.addView(blueTeam1);
-		blueAlliance.addView(blueTeam2);
-		blueAlliance.addView(blueTeam3);
+
+		TextView[] redAllies = new TextView[4];
+		for (int i = 0; i < 4; i++) {
+			redAllies[i] = new TextView(this);
+			redAllies[i].setBackground(redBackground);
+			redAllies[i].setText("4590");
+			redAllies[i].setTextColor(textColor);
+			redAllies[i].setTextSize(24);
+			redAllies[i].setGravity(0x11);
+			redAlliance.addView(redAllies[i]);
+		}
+
+		TextView[] blueAllies = new TextView[4];
+		for (int i = 0; i < 4; i++) {
+			blueAllies[i] = new TextView(this);
+			blueAllies[i].setBackground(blueBackground);
+			blueAllies[i].setText("4590");
+			blueAllies[i].setTextColor(textColor);
+			blueAllies[i].setTextSize(24);
+			blueAllies[i].setGravity(0x11);
+			blueAlliance.addView(blueAllies[i]);
+		}
+
+		blueAllies[0].setTextSize(20);
+		redAllies[0].setTextSize(20);
+		redAllies[0].setBackground(null);
+		blueAllies[0].setBackground(null);
 
 		TableLayout minorTable = new TableLayout(this);
 		minorTable.addView(redAlliance);
 		minorTable.addView(blueAlliance);
-
 		newRow.addView(minorTable);
-
 		mainTable.addView(newRow);
 	}
 }
