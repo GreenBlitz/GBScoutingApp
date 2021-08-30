@@ -16,7 +16,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 public class Net {
 
     public static JSONObject createJSON(Pair<Object, Object>... indices) {
@@ -41,7 +40,6 @@ public class Net {
             e.printStackTrace(); // throws JSONException in case entry is unsuccessful
         }
 
-        System.out.println(ret);
         return ret;
     }
 
@@ -88,7 +86,7 @@ public class Net {
         return url;
     }
 
-    public static String request(String dest, Method method, JSONObject data) {
+    public static Pair<String, Boolean> request(String dest, Method method, JSONObject data) {
         URL url = null;
         try {
             url = new URL(formatURL(dest, data));
@@ -118,7 +116,9 @@ public class Net {
         String strCurrentLine;
         String allText = "";
         try {
-            assert br != null;
+            if(br == null) {
+                return new Pair<>("", false);
+            }
             strCurrentLine = br.readLine();
             while (strCurrentLine != null) { // adds each chunk until runs out
                 allText = allText.concat(strCurrentLine); // concat data
@@ -128,7 +128,7 @@ public class Net {
             e.printStackTrace();
         }
 
-        return allText;
+        return new Pair<>(allText, true);
     }
 
     public enum Method {

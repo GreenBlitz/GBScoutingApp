@@ -60,8 +60,11 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				Net.Method method = Net.Method.GET;
 				String destURL = Constants.Networking.serverURL.concat("auth/register?"); // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
 				String responseData = "Request Failed";
+				boolean successfull = false;
 				try {
-					responseData = Net.request(destURL, method, data); // send authentication request
+					Pair<String, Boolean> response = Net.request(destURL, method, data); // send authentication request
+					responseData = response.first;
+					successfull = response.second;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
