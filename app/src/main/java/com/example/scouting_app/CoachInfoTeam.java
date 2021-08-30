@@ -19,22 +19,13 @@ public class CoachInfoTeam extends AppCompatActivity {
 
         setTitle("Coach Information by Team");
 
-        Spinner teamSelection = (Spinner) findViewById(R.id.teamHash);
-        ArrayAdapter<CharSequence> matchAdapter = ArrayAdapter.createFromResource(this, R.array.features,
-                android.R.layout.simple_spinner_dropdown_item);
+        TextView teamHash = (TextView) findViewById(R.id.teamHash);
+        teamHash.setText("4590");
 
-        teamSelection.setAdapter(matchAdapter);
+        TextView winLoss = (TextView) findViewById(R.id.winRate);
+        winLoss.setText("90%");
 
-        ProgressBar winLoss = (ProgressBar) findViewById(R.id.WinLoseRatio);
-        winLoss.setProgress(90);
-
-        TextView shoot = (TextView) findViewById(R.id.ballsPerCycle);
-        shoot.setText("60");
-
-        ProgressBar climb = (ProgressBar) findViewById(R.id.climb_success);
-        climb.setProgress(30);
-
-        TextView climbPercent = (TextView) findViewById(R.id.climb_percent);
-        climbPercent.setText("30" + "%");
+        TextView ranking = (TextView) findViewById(R.id.ranking);
+        ranking.setText("2");
     }
 }
