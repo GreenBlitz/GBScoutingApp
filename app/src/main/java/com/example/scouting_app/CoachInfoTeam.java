@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import com.example.util.Constants;
 import com.example.util.Net;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -97,5 +101,20 @@ public class CoachInfoTeam extends AppCompatActivity {
         TextView comments = (TextView) findViewById(R.id.comments);
         comments.setText(teamInfo.getString("comments"));
 
+
+        LinearLayout gamesPlayed = (LinearLayout) findViewById(R.id.gamesPlayed);
+        JSONArray games = teamInfo.getJSONArray("games");
+        for (int i = 0; i < games.length(); i++) {
+            TextView game = new TextView(this);
+            game.setText(games.getString(i));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(5, 5, 5, 5);
+            game.setLayoutParams(params);
+            game.setMaxLines(1);
+            game.setTextColor(Color.WHITE);
+            game.setTextSize(10);
+
+            gamesPlayed.addView(game);
+        }
     }
 }
