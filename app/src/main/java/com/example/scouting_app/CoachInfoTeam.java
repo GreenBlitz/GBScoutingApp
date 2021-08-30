@@ -1,22 +1,41 @@
 package com.example.scouting_app;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.util.Constants;
+import com.example.util.Net;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CoachInfoTeam extends AppCompatActivity {
-
+    public static final String requestSubdomain = "coach/team";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws JSONException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_info_team);
 
         setTitle("Coach Information by Team");
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
+
+        JSONObject authentication = new JSONObject();
+        authentication.put("uid", sharedPref.getString("uid", "none"));
+        authentication.put("psw", sharedPref.getString("password", "none"));
+        authentication.put("team", "4590"); // TODO: convert definite team string to given team from Intent
+
+        String teamInfo = Net.request(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
 
         TextView teamHash = (TextView) findViewById(R.id.teamHash);
         teamHash.setText("4590");
