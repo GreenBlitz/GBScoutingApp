@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
+        android:background="@drawable/black_background"
         android:orientation="horizontal">
 
         <TextView
@@ -55,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@drawable/black_background"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -62,6 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
@@ -74,7 +77,7 @@
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="TextView"
+                android:text="Autonomous balls"
                 android:textColor="@color/white" />
 
             <TextView
@@ -109,6 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
@@ -121,7 +125,7 @@
 
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="TextView"
+                android:text="Teleop balls"
                 android:textColor="@color/white" />
 
             <TextView
@@ -156,6 +160,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
@@ -168,7 +173,7 @@
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="TextView"
+                android:text="Cycles"
                 android:textColor="@color/white" />
 
             <TextView
@@ -204,6 +209,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@drawable/black_background"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -211,6 +217,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
@@ -223,7 +230,7 @@
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="TextView"
+                android:text="Endgame"
                 android:textColor="@color/white" />
 
             <TextView
@@ -258,6 +265,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
@@ -270,7 +278,7 @@
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="TextView"
+                android:text="Wheel iterations"
                 android:textColor="@color/white" />
 
             <TextView
@@ -305,6 +313,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
@@ -317,7 +326,7 @@
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="TextView"
+                android:text="Wheel color"
                 android:textColor="@color/white" />
 
             <TextView
@@ -353,6 +362,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7"
+        android:background="@drawable/black_background"
         android:orientation="horizontal">
 
         <TextView
@@ -370,14 +380,14 @@
             android:id="@+id/gamesPlayed"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
+            android:background="@drawable/black_background"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titleGamesPlayed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_margin="5dp"
                 android:autoSizeTextType="uniform"
                 android:maxLines="1"
                 android:text="@string/games_played"
