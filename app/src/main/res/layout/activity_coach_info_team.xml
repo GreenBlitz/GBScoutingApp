@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!DOCTYPE LinearLayout [<!ENTITY titleFont "20">]>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,23 +21,23 @@
         <TextView
             android:id="@+id/winRate"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="TextView"
             tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/teamHash"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/ranking"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="TextView" />
     </LinearLayout>
 
@@ -51,8 +51,8 @@
         <LinearLayout
             android:id="@+id/auto"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -77,8 +77,8 @@
         <LinearLayout
             android:id="@+id/tele"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -103,8 +103,8 @@
         <LinearLayout
             android:id="@+id/cycle"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -239,9 +239,9 @@
                 android:id="@+id/titleGamesPlayed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/games_played"
                 android:autoSizeTextType="uniform"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:text="@string/games_played" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

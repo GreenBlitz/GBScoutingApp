@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CoachInfoTeam extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +45,26 @@ public class CoachInfoTeam extends AppCompatActivity {
         TextView maxCycles = (TextView) findViewById(R.id.maxCycle);
         maxCycles.setText("9000");
 
-        TextView percentClimb = (TextView) findViewById(R.id.percentClimbing);
-        percentClimb.setText("9000");
+        TextView percentClimb = (TextView) findViewById(R.id.percentClimbingText);
+        percentClimb.setText("75%");
+        ProgressBar percentClimbBar = (ProgressBar) findViewById(R.id.percentClimbingBar);
+        percentClimbBar.setProgress(75);
 
         TextView lastClimb = (TextView) findViewById(R.id.lastClimbing);
         lastClimb.setText("9000");
 
-        TextView percentWheelCount = (TextView) findViewById(R.id.percentWheelCount);
-        percentWheelCount.setText("9000");
+        TextView percentWheelCount = (TextView) findViewById(R.id.percentWheelCountText);
+        percentWheelCount.setText("20%");
+        ProgressBar percentWheelCountBar = (ProgressBar) findViewById(R.id.percentWheelCountBar);
+        percentWheelCountBar.setProgress(20);
 
         TextView lastWheelCount = (TextView) findViewById(R.id.lastWheelCount);
         lastWheelCount.setText("9000");
 
-        TextView percentWheelColor = (TextView) findViewById(R.id.percentWheelColor);
-        percentWheelColor.setText("9000");
+        TextView percentWheelColor = (TextView) findViewById(R.id.percentWheelColorText);
+        percentWheelColor.setText("59%");
+        ProgressBar percentWheelColorBar = (ProgressBar) findViewById(R.id.percentWheelColorBar);
+        percentWheelColorBar.setProgress(59);
 
         TextView lastWheelColor = (TextView) findViewById(R.id.lastWheelColor);
         lastWheelColor.setText("9000");

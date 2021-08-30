@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE LinearLayout [<!ENTITY titleFont "18sp">]>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -74,11 +74,10 @@
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
 
-                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:maxLines="1"
-                android:text="Autonomous balls"
-                android:textColor="@color/white" />
+                android:text="Autonomous\nballs"
+                android:textColor="@color/white"
+                android:textSize="&titleFont;" />
 
             <TextView
                 android:id="@+id/avgAuto"
@@ -121,12 +120,12 @@
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:autoSizeTextType="uniform"
-
                 android:gravity="center"
+
                 android:maxLines="1"
                 android:text="Teleop balls"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="&titleFont;" />
 
             <TextView
                 android:id="@+id/avgTele"
@@ -168,13 +167,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
-
                 android:layout_weight="0.5"
-                android:autoSizeTextType="uniform"
+
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="Cycles"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="&titleFont;" />
 
             <TextView
                 android:id="@+id/avgCycle"
@@ -227,24 +226,39 @@
                 android:layout_margin="5dp"
 
                 android:layout_weight="0.5"
-                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="Endgame"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="&titleFont;" />
 
-            <TextView
-                android:id="@+id/percentClimbing"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:autoSizeTextType="uniform"
-                android:gravity="center"
-                android:maxLines="1"
+                android:layout_weight="1">
 
-                android:text="TextView"
-                android:textColor="@color/white" />
+                <ProgressBar
+                    android:id="@+id/percentClimbingBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/circle_shape"
+                    android:max="100"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/circular_progress_bar" />
+
+                <TextView
+                    android:id="@+id/percentClimbingText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+
+                    android:text="TextView"
+                    android:textColor="@color/white" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/lastClimbing"
@@ -273,26 +287,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
-
                 android:layout_weight="0.5"
-                android:autoSizeTextType="uniform"
+
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="Wheel iterations"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="&titleFont;" />
 
-            <TextView
-                android:id="@+id/percentWheelCount"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:autoSizeTextType="uniform"
+                android:layout_weight="1">
 
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="TextView"
-                android:textColor="@color/white" />
+                <ProgressBar
+                    android:id="@+id/percentWheelCountBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/circle_shape"
+                    android:max="100"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/circular_progress_bar" />
+
+                <TextView
+                    android:id="@+id/percentWheelCountText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="TextView"
+                    android:textColor="@color/white" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/lastWheelCount"
@@ -321,26 +350,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
-
                 android:layout_weight="0.5"
-                android:autoSizeTextType="uniform"
+
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="Wheel color"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="&titleFont;" />
 
-            <TextView
-                android:id="@+id/percentWheelColor"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
 
-                android:autoSizeTextType="uniform"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="TextView"
-                android:textColor="@color/white" />
+                <ProgressBar
+                    android:id="@+id/percentWheelColorBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/circle_shape"
+                    android:max="100"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/circular_progress_bar" />
+
+                <TextView
+                    android:id="@+id/percentWheelColorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="TextView"
+                    android:textColor="@color/white" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/lastWheelColor"
