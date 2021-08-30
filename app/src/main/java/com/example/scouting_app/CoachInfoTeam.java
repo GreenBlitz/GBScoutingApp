@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CoachInfoTeam extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +28,8 @@ public class CoachInfoTeam extends AppCompatActivity {
         ProgressBar winLoss = (ProgressBar) findViewById(R.id.WinLoseRatio);
         winLoss.setProgress(90);
 
-        ProgressBar shoot = (ProgressBar) findViewById(R.id.ShootSuccess);
-        shoot.setProgress(60);
+        TextView shoot = (TextView) findViewById(R.id.ballsPerCycle);
+        shoot.setText("60");
 
         ProgressBar climb = (ProgressBar) findViewById(R.id.climb_success);
         climb.setProgress(30);

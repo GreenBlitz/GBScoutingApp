@@ -36,4 +36,5 @@
     <string name="togglebutton">ToggleButton</string>
     <string name="greenblitz_new_logo">Greenblitz new logo</string>
     <string name="error_msg">Error, status not found</string>
+    <string name="games_played">Games Played:</string>
 </resources>
