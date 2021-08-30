@@ -80,41 +80,17 @@ public class Net {
          */
 
         String url = destURL;
-
+        if (!url.endsWith("?")) {
+            url = url.concat("?");
+        }
         url = url.concat("json=" + data.toString());
 
-//		Iterator<String> keys = data.keys(); // key iterator
-//		boolean following = false; // following item has & since it adds upon previous item
-
-		/*while (keys.hasNext()) { // until inserted all keys
-			String key = keys.next();
-			String value = "null";
-			try {
-				value = data.get(key).toString(); // get entry value
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			String item = "";
-			if (following) {
-				item = "&"; // & is for appending a non-first item
-			} else {
-				following = true;
-			}
-
-			item = item.concat(String.format("%s=%s", key, value)); // formats http parameter protocol with values
-			url = url.concat(item); // concat parameter to url augment
-		}*/
-
-        System.out.println(url);
         return url;
     }
 
-    public static String request(String dest, Method method, JSONObject data, Pair<String, String>[] property) {
-        System.out.println("json:" + data.toString());
+    public static String request(String dest, Method method, JSONObject data) {
         URL url = null;
         try {
-            System.out.println("formatted url: " + formatURL(dest, data));
             url = new URL(formatURL(dest, data));
 
         } catch (MalformedURLException e) {
@@ -152,12 +128,7 @@ public class Net {
             e.printStackTrace();
         }
 
-        System.out.println(allText);
         return allText;
-    }
-
-    public static String request(String dest, Method method, JSONObject data) {
-        return request(dest, method, data, new Pair[]{});
     }
 
     public enum Method {
