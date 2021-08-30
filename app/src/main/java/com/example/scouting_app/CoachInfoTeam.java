@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Pair;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 public class CoachInfoTeam extends AppCompatActivity {
     public static final String requestSubdomain = "coach/team";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) throws JSONException {
         super.onCreate(savedInstanceState);
@@ -33,63 +35,67 @@ public class CoachInfoTeam extends AppCompatActivity {
         JSONObject authentication = new JSONObject();
         authentication.put("uid", sharedPref.getString("uid", "none"));
         authentication.put("psw", sharedPref.getString("password", "none"));
-        authentication.put("team", "4590"); // TODO: convert definite team string to given team from Intent
+        authentication.put("teamHash", "4590"); // TODO: convert definite team string to given team from Intent
 
-        String teamInfo = Net.request(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
+        Pair<JSONObject, Boolean> response = Net.requestJSON(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
+        JSONObject teamInfo = response.first;
 
         TextView teamHash = (TextView) findViewById(R.id.teamHash);
         teamHash.setText("4590");
 
         TextView winLoss = (TextView) findViewById(R.id.winRate);
-        winLoss.setText("90%");
+        winLoss.setText(teamInfo.getDouble("winRate") + "%");
 
         TextView ranking = (TextView) findViewById(R.id.ranking);
-        ranking.setText("2");
+        ranking.setText(teamInfo.getInt("ranking"));
 
         TextView avgAuto = (TextView) findViewById(R.id.avgAuto);
-        avgAuto.setText("9000");
+        avgAuto.setText("" + teamInfo.getDouble("avgAuto"));
 
         TextView maxAuto = (TextView) findViewById(R.id.maxAuto);
-        maxAuto.setText("9000");
+        maxAuto.setText(teamInfo.getInt("maxAuto"));
 
         TextView avgTele = (TextView) findViewById(R.id.avgTele);
-        avgTele.setText("9000");
+        avgTele.setText("" + teamInfo.getDouble("avgTele"));
 
         TextView maxTele = (TextView) findViewById(R.id.maxTele);
-        maxTele.setText("9000");
+        maxTele.setText(teamInfo.getInt("maxTele"));
 
         TextView avgCycles = (TextView) findViewById(R.id.avgCycle);
-        avgCycles.setText("9000");
+        avgCycles.setText("" + teamInfo.getDouble("avgCycles"));
 
         TextView maxCycles = (TextView) findViewById(R.id.maxCycle);
-        maxCycles.setText("9000");
+        maxCycles.setText(teamInfo.getInt("maxCycles"));
 
+        double percentClimbValue = teamInfo.getDouble("percentClimb");
         TextView percentClimb = (TextView) findViewById(R.id.percentClimbingText);
-        percentClimb.setText("75%");
+        percentClimb.setText(percentClimbValue + "%");
         ProgressBar percentClimbBar = (ProgressBar) findViewById(R.id.percentClimbingBar);
-        percentClimbBar.setProgress(75);
+        percentClimbBar.setProgress((int) percentClimbValue);
 
         TextView lastClimb = (TextView) findViewById(R.id.lastClimbing);
-        lastClimb.setText("9000");
+        lastClimb.setText(teamInfo.getString("lastClimb"));
 
+        double percentWheelCountValue = teamInfo.getDouble("percentWheelCount");
         TextView percentWheelCount = (TextView) findViewById(R.id.percentWheelCountText);
-        percentWheelCount.setText("20%");
+        percentWheelCount.setText(percentWheelCountValue + "%");
         ProgressBar percentWheelCountBar = (ProgressBar) findViewById(R.id.percentWheelCountBar);
-        percentWheelCountBar.setProgress(20);
+        percentWheelCountBar.setProgress((int) percentWheelCountValue);
 
         TextView lastWheelCount = (TextView) findViewById(R.id.lastWheelCount);
-        lastWheelCount.setText("9000");
+        lastWheelCount.setText(teamInfo.getString("lastWheelCount"));
 
+        double percentWheelColorValue = teamInfo.getDouble("percentWheelColor");
         TextView percentWheelColor = (TextView) findViewById(R.id.percentWheelColorText);
-        percentWheelColor.setText("59%");
+        percentWheelColor.setText(percentWheelColorValue + "%");
         ProgressBar percentWheelColorBar = (ProgressBar) findViewById(R.id.percentWheelColorBar);
-        percentWheelColorBar.setProgress(59);
+        percentWheelColorBar.setProgress((int) percentWheelColorValue);
 
         TextView lastWheelColor = (TextView) findViewById(R.id.lastWheelColor);
-        lastWheelColor.setText("9000");
+        lastWheelColor.setText(teamInfo.getString("lastWheelColor"));
 
         TextView comments = (TextView) findViewById(R.id.comments);
-        comments.setText("over 9 thousand");
+        comments.setText(teamInfo.getString("comments"));
 
     }
 }
