@@ -3,7 +3,7 @@ package com.example.util;
 public class Constants {
 
 	public static class Networking {
-		public static final String serverURL = "http://109.186.131.164:5000/";
+		public static final String serverURL = "http://192.168.96.125:5000/";
 	}
 
 	public static class ScoutingPrompt {
