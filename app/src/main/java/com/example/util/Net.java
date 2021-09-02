@@ -91,7 +91,6 @@ public class Net {
     public static Pair<String, Boolean> request(String dest, Method method, JSONObject data) {
         URL url = null;
         try {
-            System.out.println(formatURL(dest, data));
             url = new URL(formatURL(dest, data));
 
         } catch (MalformedURLException e) {

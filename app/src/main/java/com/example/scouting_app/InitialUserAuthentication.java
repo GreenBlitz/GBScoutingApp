@@ -60,10 +60,12 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin)); // generate JSON with password and PIN for auth
 				Net.Method method = Net.Method.GET;
 				String destURL = Constants.Networking.serverURL.concat("auth/register?"); // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
+
 				JSONObject responseData = null;
 				boolean successfull = false;
 				try {
 					Pair<JSONObject, Boolean> response = Net.requestJSON(destURL, method, data); // send authentication request
+
 					responseData = response.first;
 					successfull = response.second;
 				} catch (Exception e) {

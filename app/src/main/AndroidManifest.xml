@@ -27,33 +27,42 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+
 		<activity
 			android:name=".ScoutingPrompt"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
-
 		</activity>
+
 		<activity
 			android:name=".CoachInformation"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
-
 		</activity>
+
 		<activity
 			android:name=".ErrorActivity"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
-
 		</activity>
+
 		<activity
 			android:name=".CoachInfoTeam"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
-
 		</activity>
+
+		<activity
+			android:name=".GamesPage"
+			android:exported="true"
+			android:screenOrientation="portrait"
+			tools:ignore="LockedOrientationActivity">
+		</activity>
+
 	</application>
+
 </manifest>
