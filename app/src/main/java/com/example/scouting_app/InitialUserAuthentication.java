@@ -45,7 +45,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 		EditText PIN = findViewById(R.id.ENTER_PIN);
 		Button LOGIN = findViewById(R.id.LOGIN);
 
-		SharedPreferences sharedPref = InitialUserAuthentication.this.getPreferences(Context.MODE_PRIVATE); // access phone memory
+		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE); // access phone memory
 		@SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 		if (sharedPref.getString("password", "0").equals("0")) { // if didn't save anything for password must generate one and save it
 			editor.putString("password", genPass()); // save generated password
@@ -62,17 +62,18 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				String destURL = Constants.Networking.serverURL.concat("auth/register?"); // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
 
 				JSONObject responseData = null;
-				boolean successfull = false;
+				boolean successful = false;
 				try {
 					Pair<JSONObject, Boolean> response = Net.requestJSON(destURL, method, data); // send authentication request
 
 					responseData = response.first;
-					successfull = response.second;
+					successful = response.second;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				System.out.println("keyword" + responseData);
 				try {
+					assert responseData != null;
 					uid = responseData.getInt("uid"); // temporary handling with response before embedding the response data in system
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -86,20 +87,12 @@ public class InitialUserAuthentication extends AppCompatActivity {
 			}
 
 			editor.putInt("uid", uid);
+			Intent switchActivity;
+			switchActivity = new Intent(this, GamesPage.class);
+			startActivity(switchActivity);
+
 		});
 	}
 
-	public void switchActivities(String page) {
-		Intent switchActivity;
-		switch (page) {
-			case "scouter": //TODO: shitty one-case switch statement, pls fix
-				switchActivity = new Intent(this, ScoutingPrompt.class);
-				break;
-			default:
-				switchActivity = new Intent(this, ErrorActivity.class);
-		}
-
-		startActivity(switchActivity);
-	}
 
 }

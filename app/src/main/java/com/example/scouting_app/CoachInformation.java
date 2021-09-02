@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class CoachInformation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CoachInformation extends AppCompatActivity {
 
 	private int[] teamHashes;
 	private Spinner featureSelection;
@@ -23,6 +23,27 @@ public class CoachInformation extends AppCompatActivity implements AdapterView.O
 		super();
 
 		teamHashes = new int[]{4590, 1574, 1619, 1687, 1690, 254};
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_coach_information);
+
+		setTitle("Coach Information");
+
+		featureSelection = (Spinner) findViewById(R.id.feature_selection);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.features,
+				android.R.layout.simple_spinner_dropdown_item);
+
+		featureSelection.setAdapter(adapter);
+		featureSelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+
+		@SuppressLint("CutPasteId") Spinner matchSelection = (Spinner) findViewById(R.id.feature_selection);
+		ArrayAdapter<CharSequence> matchAdapter = ArrayAdapter.createFromResource(this, R.array.features,
+				android.R.layout.simple_spinner_dropdown_item);
+
+		matchSelection.setAdapter(matchAdapter);
 	}
 
 	public static int getStats(int teamHash) {
@@ -52,27 +73,6 @@ public class CoachInformation extends AppCompatActivity implements AdapterView.O
 			default:
 				return -1;
 		}
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_coach_information);
-
-		setTitle("Coach Information");
-
-		featureSelection = (Spinner) findViewById(R.id.feature_selection);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.features,
-				android.R.layout.simple_spinner_dropdown_item);
-
-		featureSelection.setAdapter(adapter);
-		featureSelection.setOnItemSelectedListener(this);
-
-		@SuppressLint("CutPasteId") Spinner matchSelection = (Spinner) findViewById(R.id.feature_selection);
-		ArrayAdapter<CharSequence> matchAdapter = ArrayAdapter.createFromResource(this, R.array.features,
-				android.R.layout.simple_spinner_dropdown_item);
-
-		matchSelection.setAdapter(matchAdapter);
 	}
 
 	public ArrayList<View> filterType(ArrayList<View> lst) {
@@ -160,33 +160,4 @@ public class CoachInformation extends AppCompatActivity implements AdapterView.O
 		}
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//        ImageView image = findViewById(R.id.image1);
-//        int resId;
-//        if (((ToggleButton)findViewById(R.id.feature_info)).isChecked()) {
-//            switch (((Spinner)view).getSelectedItem()) {
-//                case "climb":
-//                    resId = R.drawable.climb_info;
-//                    break;
-//                case "Accuracy":
-//                    resId = R.drawable.accuracy_info;
-//                    break;
-//                case "cycles":
-//                    resId = R.drawable.cycles_info;
-//                    break;
-//                case "Cycles":
-//                    resId = R.drawable.cycles_caps_info;
-//                    break;
-//                default:
-//                    resId = R.drawable.error_404;
-//            }
-//            image.setImageResource(resId);
-//        }
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-
-	}
 }
