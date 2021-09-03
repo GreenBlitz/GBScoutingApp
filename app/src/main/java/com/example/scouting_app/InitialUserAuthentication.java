@@ -88,9 +88,11 @@ public class InitialUserAuthentication extends AppCompatActivity {
 			}
 
 			try {
+				System.out.println("RAZ RAZ RAZ 2");
 				editor.putString("name", responseData.getString("name"));
 				editor.putString("role", responseData.getString("role"));
 				editor.putString("uid", responseData.getString("uid"));
+				editor.apply();
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

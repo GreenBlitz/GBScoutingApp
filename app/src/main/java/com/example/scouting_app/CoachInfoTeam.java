@@ -43,14 +43,14 @@ public class CoachInfoTeam extends AppCompatActivity {
         teamHash = intent.getStringExtra("team");
 
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
+        SharedPreferences sharedPref = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 
         authentication = new JSONObject();
         try {
-            authentication.put("id", "2");//sharedPref.getString("uid", "none"));
-            authentication.put("psw", "6X3dox0nKcbSFMET8hbhB3YJN3zxyD");//sharedPref.getString("password", "none"));
-            authentication.put("team", teamHash); // TODO: convert definite team string to given team from Intent
+            authentication.put("id", sharedPref.getString("uid", "none"));
+            authentication.put("psw", sharedPref.getString("password", "none"));
+            authentication.put("team", teamHash);
             System.out.println("ORI: " + authentication.toString());
             System.out.println(teamHash);
         } catch (Exception e) {

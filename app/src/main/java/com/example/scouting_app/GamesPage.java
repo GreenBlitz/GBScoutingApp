@@ -29,8 +29,6 @@ import org.w3c.dom.Text;
 
 public class GamesPage extends AppCompatActivity {
 
-<<<<<<
-    <HEAD
             LinearLayout mainTable;
     JSONObject responseData = null;
     private static int ids;
