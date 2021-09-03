@@ -116,7 +116,7 @@ public class GamesPage extends AppCompatActivity {
         LinearLayout game = new LinearLayout(this);
         game.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
         game.setOrientation(LinearLayout.VERTICAL);
-        
+
         for (int i = 0; i < Constants.GamesPage.ALLIANCES; i++) {
             LinearLayout alliance = new LinearLayout(this);
             alliance.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
@@ -161,7 +161,7 @@ public class GamesPage extends AppCompatActivity {
                     public void onClick(View v) {
                         assert v instanceof TextView;
 
-                        String role = "scouter";
+                        String role = "coach";
 
                         Intent i;
                         switch (role) {

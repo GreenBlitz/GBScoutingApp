@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,6 +25,9 @@ import org.json.JSONObject;
 
 public class CoachInfoTeam extends AppCompatActivity {
     public static final String requestSubdomain = "coach/team";
+    private Intent intent;
+    private String teamHash;
+    static JSONObject teamInfo = null;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -33,29 +37,43 @@ public class CoachInfoTeam extends AppCompatActivity {
 
 		setTitle("Coach Information by Team");
 
+		intent = getIntent();
+		teamHash = intent.getStringExtra("teamHash");
+
+
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 
         JSONObject authentication = new JSONObject();
         try {
-            authentication.put("uid", sharedPref.getString("uid", "none"));
+            authentication.put("id", sharedPref.getString("uid", "none"));
             authentication.put("psw", sharedPref.getString("password", "none"));
-            authentication.put("teamHash", "4590"); // TODO: convert definite team string to given team from Intent
+            authentication.put("teamHash", teamHash); // TODO: convert definite team string to given team from Intent
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Pair<JSONObject, Boolean> response = new Pair<>(null, false);
-        try {
-            response = Net.requestJSON(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        Thread net = new Thread(() -> {
+            Pair<JSONObject, Boolean> response = new Pair<>(null, false);
+            try {
+                response = Net.requestJSON(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            teamInfo = response.first;
+        });
+        net.start();
+
+        long tStart = System.currentTimeMillis();
+        while (teamInfo == null && System.currentTimeMillis() - tStart < 5000) { // wait for response with timeout of 5 seconds to get data.
+//				System.out.println("waiting");
         }
-        JSONObject teamInfo = response.first;
+
 
         try {
             TextView teamHash = (TextView) findViewById(R.id.teamHash);
-            teamHash.setText("4590");
+            teamHash.setText(this.teamHash);
 
             TextView winLoss = (TextView) findViewById(R.id.winRate);
             winLoss.setText(teamInfo.getDouble("winRate") + "%");
