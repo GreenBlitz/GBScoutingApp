@@ -4,12 +4,14 @@ import static com.example.util.Constants.GamesPage.TEAMS_PER_ALLIANCE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,11 +25,13 @@ import com.example.util.Net;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class GamesPage extends AppCompatActivity {
 
     LinearLayout mainTable;
     JSONObject responseData = null;
+    private static int ids;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -35,6 +39,8 @@ public class GamesPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_page);
         mainTable = findViewById(R.id.mainTable);
+
+        ids = 0;
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
 
@@ -79,7 +85,7 @@ public class GamesPage extends AppCompatActivity {
             try {
                 System.out.println(arr.get(i));
                 JSONObject game = arr.getJSONObject(i);
-                JSONArray teams = game.getJSONArray("teams");
+                JSONArray teams = game.getJSONArray("alliances");
                 System.out.println(teams.length());
                 String[][] teamHashes = new String[2][3];
                 for (int j = 0; j < teams.length(); j++) {
@@ -88,10 +94,15 @@ public class GamesPage extends AppCompatActivity {
                         teamHashes[j][k] = alliance.getString(k);
                     }
                 }
+                System.out.println("adding game");
                 addGame(game.getString("time"), game.getString("gameID"), teamHashes);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        for (int id = 0; id < ids; id++) {
+            System.out.println(id + ": " + ((TextView)findViewById(id)).getText());
         }
     }
 
@@ -105,7 +116,7 @@ public class GamesPage extends AppCompatActivity {
         LinearLayout game = new LinearLayout(this);
         game.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
         game.setOrientation(LinearLayout.VERTICAL);
-
+        
         for (int i = 0; i < Constants.GamesPage.ALLIANCES; i++) {
             LinearLayout alliance = new LinearLayout(this);
             alliance.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
@@ -116,6 +127,8 @@ public class GamesPage extends AppCompatActivity {
             timeOrQual.setTextColor(textColor);
             timeOrQual.setGravity(Gravity.CENTER);
             timeOrQual.setTextSize(20);
+            timeOrQual.setId(ids);
+            ids++;
 
             String text;
 
@@ -142,6 +155,35 @@ public class GamesPage extends AppCompatActivity {
                 team.setBackground(bgs[i]);
                 team.setTextSize(24);
                 team.setText(alliances[i][j]);
+                team.setId(ids);
+                team.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        assert v instanceof TextView;
+
+                        String role = "scouter";
+
+                        Intent i;
+                        switch (role) {
+                            case "scouter":
+                                i = new Intent(GamesPage.this, ScoutingPrompt.class);
+                                @SuppressLint("ResourceType") TextView gameID = findViewById(v.getId() - (v.getId() % 8) + 4);
+                                i.putExtra("gameID", (String) gameID.getText());
+                                break;
+                            case "coach":
+                                i = new Intent(GamesPage.this, CoachInfoTeam.class);
+                                break;
+                            default:
+                                return;
+                        }
+
+                        i.putExtra("team", (String) ((TextView) v).getText());
+
+                        startActivity(i);
+
+                    }
+                });
+                ids++;
 
                 alliance.addView(team);
             }

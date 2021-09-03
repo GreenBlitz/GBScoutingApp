@@ -35,6 +35,7 @@ public class ScoutingPrompt extends AppCompatActivity {
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
+	private TextView teamHash, gameID;
 	@SuppressLint("UseSwitchCompatOrMaterialCode")
 	private Switch climbed;
 
@@ -46,6 +47,8 @@ public class ScoutingPrompt extends AppCompatActivity {
 
 		setTitle("Scouting Prompt");
 
+		Intent i = getIntent();
+
 		cyclesView = findViewById(R.id.cycles);
 		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);
@@ -54,6 +57,11 @@ public class ScoutingPrompt extends AppCompatActivity {
 		RouletteWheelByRotations = findViewById(R.id.rotationCheckBox);
 		RouletteWheelByColor = findViewById(R.id.colorCheckBox);
 		climbed = findViewById(R.id.climbedSwitch);
+		teamHash = findViewById(R.id.team);
+		teamHash.setText(i.getStringExtra("team"));
+		gameID = findViewById(R.id.game);
+		gameID.setText(i.getStringExtra("gameID"));
+
 	}
 
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
