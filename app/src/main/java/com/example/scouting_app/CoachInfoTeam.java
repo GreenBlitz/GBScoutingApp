@@ -28,6 +28,7 @@ public class CoachInfoTeam extends AppCompatActivity {
     private Intent intent;
     private String teamHash;
     static JSONObject teamInfo = null;
+    static JSONObject authentication;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -38,17 +39,19 @@ public class CoachInfoTeam extends AppCompatActivity {
 		setTitle("Coach Information by Team");
 
 		intent = getIntent();
-		teamHash = intent.getStringExtra("teamHash");
+		teamHash = intent.getStringExtra("team");
 
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 
-        JSONObject authentication = new JSONObject();
+        authentication = new JSONObject();
         try {
-            authentication.put("id", sharedPref.getString("uid", "none"));
-            authentication.put("psw", sharedPref.getString("password", "none"));
-            authentication.put("teamHash", teamHash); // TODO: convert definite team string to given team from Intent
+            authentication.put("id", "2");//sharedPref.getString("uid", "none"));
+            authentication.put("psw", "6X3dox0nKcbSFMET8hbhB3YJN3zxyD");//sharedPref.getString("password", "none"));
+            authentication.put("team", teamHash); // TODO: convert definite team string to given team from Intent
+            System.out.println("ORI: " + authentication.toString());
+            System.out.println(teamHash);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,9 +70,9 @@ public class CoachInfoTeam extends AppCompatActivity {
 
         long tStart = System.currentTimeMillis();
         while (teamInfo == null && System.currentTimeMillis() - tStart < 5000) { // wait for response with timeout of 5 seconds to get data.
-//				System.out.println("waiting");
         }
 
+        System.out.println(teamInfo.toString());
 
         try {
             TextView teamHash = (TextView) findViewById(R.id.teamHash);
