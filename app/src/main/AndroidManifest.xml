@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	package="com.example.scouting_app">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.scouting_app">
 
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -18,57 +18,57 @@
         tools:targetApi="n">
 
 
-		<activity
-			android:name=".InitialUserAuthentication"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
+        <activity
+            android:name=".InitialUserAuthentication"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-		<activity
-			android:name=".ScoutingPrompt"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".GamesPage"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
-		</activity>
+        </activity>
 
-		<activity
-			android:name=".CoachInformation"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".ScoutingPrompt"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
-		</activity>
+        </activity>
 
-		<activity
-			android:name=".ErrorActivity"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".CoachInformation"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
-		</activity>
+        </activity>
 
-		<activity
-			android:name=".CoachInfoTeam"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".CoachInfoTeam"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
-		</activity>
+        </activity>
 
-		<activity
-			android:name=".GamesPage"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".ErrorActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
-		</activity>
+        </activity>
 
-	</application>
+    </application>
 
 </manifest>

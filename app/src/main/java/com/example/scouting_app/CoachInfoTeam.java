@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.ViewGroup;
@@ -36,10 +37,10 @@ public class CoachInfoTeam extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_info_team);
 
-		setTitle("Coach Information by Team");
+        setTitle("Coach Information by Team");
 
-		intent = getIntent();
-		teamHash = intent.getStringExtra("team");
+        intent = getIntent();
+        teamHash = intent.getStringExtra("team");
 
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
@@ -152,3 +153,4 @@ public class CoachInfoTeam extends AppCompatActivity {
         }
     }
 }
+

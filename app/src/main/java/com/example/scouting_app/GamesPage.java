@@ -29,9 +29,12 @@ import org.w3c.dom.Text;
 
 public class GamesPage extends AppCompatActivity {
 
-    LinearLayout mainTable;
+<<<<<<
+    <HEAD
+            LinearLayout mainTable;
     JSONObject responseData = null;
     private static int ids;
+    SharedPreferences sharedPref;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -39,6 +42,8 @@ public class GamesPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_page);
         mainTable = findViewById(R.id.mainTable);
+        sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
+        setTitle("Games Page");
 
         ids = 0;
 
@@ -59,19 +64,11 @@ public class GamesPage extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-/*
-			try {
-				assert responseData != null;
-				uid = responseData.getInt("uid"); // temporary handling with response before embedding the response data in system
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-*/
+
         });
         thread.start();
         long tStart = System.currentTimeMillis();
         while (responseData == null && System.currentTimeMillis() - tStart < 5000) { // wait for response with timeout of 5 seconds to get data.
-//				System.out.println("waiting");
         }
         JSONArray arr = null;
         try {
@@ -94,7 +91,6 @@ public class GamesPage extends AppCompatActivity {
                         teamHashes[j][k] = alliance.getString(k);
                     }
                 }
-                System.out.println("adding game");
                 addGame(game.getString("time"), game.getString("gameID"), teamHashes);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -102,12 +98,12 @@ public class GamesPage extends AppCompatActivity {
         }
 
         for (int id = 0; id < ids; id++) {
-            System.out.println(id + ": " + ((TextView)findViewById(id)).getText());
+            System.out.println(id + ": " + ((TextView) findViewById(id)).getText());
         }
     }
 
     @SuppressLint({"ResourceAsColor", "DefaultLocale", "SetTextI18n"})
-    public void addGame(String time, String qualID, String[][] alliances) throws JSONException {
+    public void addGame(String time, String gameID, String[][] alliances) throws JSONException {
         Drawable redBackground = ResourcesCompat.getDrawable(getResources(), R.drawable.red_background, null);
         Drawable blueBackground = ResourcesCompat.getDrawable(getResources(), R.drawable.blue_background, null);
         Drawable[] bgs = {redBackground, blueBackground};
@@ -122,29 +118,29 @@ public class GamesPage extends AppCompatActivity {
             alliance.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
             alliance.setOrientation(LinearLayout.HORIZONTAL);
 
-            TextView timeOrQual = new TextView(this);
-            timeOrQual.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 3));
-            timeOrQual.setTextColor(textColor);
-            timeOrQual.setGravity(Gravity.CENTER);
-            timeOrQual.setTextSize(20);
-            timeOrQual.setId(ids);
+            TextView timeOrGame = new TextView(this);
+            timeOrGame.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 3));
+            timeOrGame.setTextColor(textColor);
+            timeOrGame.setGravity(Gravity.CENTER);
+            timeOrGame.setTextSize(20);
+            timeOrGame.setId(ids);
             ids++;
 
             String text;
 
             switch (i) {
                 case 0:
-                    text = time;
+                    text = (String) time.substring(10, 16); //remove the seconds
                     break;
                 case 1:
-                    text = qualID;
+                    text = gameID;
                     break;
                 default:
                     text = "broken";
             }
 
-            timeOrQual.setText(text);
-            alliance.addView(timeOrQual);
+            timeOrGame.setText(text);
+            alliance.addView(timeOrGame);
 
             for (int j = 0; j < TEAMS_PER_ALLIANCE; j++) {
                 TextView team = new TextView(this);

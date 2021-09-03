@@ -20,8 +20,9 @@ import org.json.JSONObject;
 import java.util.Random;
 
 public class InitialUserAuthentication extends AppCompatActivity {
-	String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
-	int SIZE = 30; // pass size
+	final String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
+	final int SIZE = 30; // pass size
+	JSONObject responseData = null;
 	Random r = new Random();
 
 	public String genPass() {
@@ -39,13 +40,13 @@ public class InitialUserAuthentication extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) throws NumberFormatException {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_init_user_auth);
-
 		setTitle("Initial User Authentication");
 
 		EditText PIN = findViewById(R.id.ENTER_PIN);
 		Button LOGIN = findViewById(R.id.LOGIN);
 
-		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE); // access phone memory
+		SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
+		System.out.println("RAZ RAZ RAZ 1: " + sharedPref.getAll().toString());
 		@SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 		if (sharedPref.getString("password", "0").equals("0")) { // if didn't save anything for password must generate one and save it
 			editor.putString("password", genPass()); // save generated password
@@ -61,7 +62,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				Net.Method method = Net.Method.GET;
 				String destURL = Constants.Networking.serverURL.concat("auth/register?"); // TODO: url is currently dynamic, need to convert to some sort of DNS perhaps
 
-				JSONObject responseData = null;
+
 				boolean successful = false;
 				try {
 					Pair<JSONObject, Boolean> response = Net.requestJSON(destURL, method, data); // send authentication request
@@ -86,7 +87,14 @@ public class InitialUserAuthentication extends AppCompatActivity {
 //				System.out.println("waiting");
 			}
 
-			editor.putInt("uid", uid);
+			try {
+				editor.putString("name", responseData.getString("name"));
+				editor.putString("role", responseData.getString("role"));
+				editor.putString("uid", responseData.getString("uid"));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
 			Intent switchActivity;
 			switchActivity = new Intent(this, GamesPage.class);
 			startActivity(switchActivity);
