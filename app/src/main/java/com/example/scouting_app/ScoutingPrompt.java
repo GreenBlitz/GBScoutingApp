@@ -43,7 +43,6 @@ public class ScoutingPrompt extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scouting_prompt);
-
 		setTitle("Scouting Prompt");
 
 		cyclesView = findViewById(R.id.cycles);

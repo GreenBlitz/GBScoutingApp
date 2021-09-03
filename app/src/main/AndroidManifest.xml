@@ -23,6 +23,19 @@
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
 
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+
+		</activity>
+
+		<activity
+			android:name=".GamesPage"
+			android:exported="true"
+			android:screenOrientation="portrait"
+			tools:ignore="LockedOrientationActivity">
+
 		</activity>
 
 		<activity
@@ -42,14 +55,6 @@
 		</activity>
 
 		<activity
-			android:name=".ErrorActivity"
-			android:exported="true"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
-
-		</activity>
-
-		<activity
 			android:name=".CoachInfoTeam"
 			android:exported="true"
 			android:screenOrientation="portrait"
@@ -58,14 +63,11 @@
 		</activity>
 
 		<activity
-			android:name=".GamesPage"
+			android:name=".ErrorActivity"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
+
 		</activity>
 
 	</application>
