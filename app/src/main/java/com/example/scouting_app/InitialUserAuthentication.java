@@ -23,6 +23,8 @@ public class InitialUserAuthentication extends AppCompatActivity {
 	final String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
 	final int SIZE = 30; // pass size
 	JSONObject responseData = null;
+	SharedPreferences sharedPref;
+	SharedPreferences.Editor editor;
 	Random r = new Random();
 
 	public String genPass() {
@@ -45,9 +47,10 @@ public class InitialUserAuthentication extends AppCompatActivity {
 		EditText PIN = findViewById(R.id.ENTER_PIN);
 		Button LOGIN = findViewById(R.id.LOGIN);
 
-		SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
+		sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
 		System.out.println("RAZ RAZ RAZ 1: " + sharedPref.getAll().toString());
-		@SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
+		editor = sharedPref.edit();
+
 		if (sharedPref.getString("password", "0").equals("0")) { // if didn't save anything for password must generate one and save it
 			editor.putString("password", genPass()); // save generated password
 			editor.apply();
@@ -88,9 +91,11 @@ public class InitialUserAuthentication extends AppCompatActivity {
 			}
 
 			try {
+				System.out.println("RAZ RAZ RAZ 2: " + editor);
 				editor.putString("name", responseData.getString("name"));
 				editor.putString("role", responseData.getString("role"));
 				editor.putString("uid", responseData.getString("uid"));
+				editor.apply();
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
