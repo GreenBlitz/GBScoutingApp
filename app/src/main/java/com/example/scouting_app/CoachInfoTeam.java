@@ -80,55 +80,56 @@ public class CoachInfoTeam extends AppCompatActivity {
             teamHash.setText(this.teamHash);
 
             TextView winLoss = (TextView) findViewById(R.id.winRate);
-            winLoss.setText(teamInfo.getDouble("winRate") + "%");
+            winLoss.setText(("" + teamInfo.getDouble("win_rate")).substring(0, 4) + "%");
 
             TextView ranking = (TextView) findViewById(R.id.ranking);
-            ranking.setText(teamInfo.getInt("ranking"));
+            ranking.setText(teamInfo.getString("ranking_or_alliance"));
 
             TextView avgAuto = (TextView) findViewById(R.id.avgAuto);
-            avgAuto.setText("" + teamInfo.getDouble("avgAuto"));
+            avgAuto.setText("" + teamInfo.getDouble("auto_balls_avg"));
 
             TextView maxAuto = (TextView) findViewById(R.id.maxAuto);
-            maxAuto.setText(teamInfo.getInt("maxAuto"));
+            maxAuto.setText("" + teamInfo.getInt("auto_balls_max"));
 
             TextView avgTele = (TextView) findViewById(R.id.avgTele);
-            avgTele.setText("" + teamInfo.getDouble("avgTele"));
+            avgTele.setText("" + teamInfo.getDouble("tele_balls_avg"));
 
             TextView maxTele = (TextView) findViewById(R.id.maxTele);
-            maxTele.setText(teamInfo.getInt("maxTele"));
+            maxTele.setText("" + teamInfo.getInt("tele_balls_max"));
 
             TextView avgCycles = (TextView) findViewById(R.id.avgCycle);
-            avgCycles.setText("" + teamInfo.getDouble("avgCycles"));
+            avgCycles.setText("" + teamInfo.getDouble("cycles_avg"));
 
             TextView maxCycles = (TextView) findViewById(R.id.maxCycle);
-            maxCycles.setText(teamInfo.getInt("maxCycles"));
+            maxCycles.setText("" + teamInfo.getInt("cycles_max"));
 
-            double percentClimbValue = teamInfo.getDouble("percentClimb");
+            double percentClimbValue = teamInfo.getDouble("climb_avg");
             TextView percentClimb = (TextView) findViewById(R.id.percentClimbingText);
             percentClimb.setText(percentClimbValue + "%");
             ProgressBar percentClimbBar = (ProgressBar) findViewById(R.id.percentClimbingBar);
             percentClimbBar.setProgress((int) percentClimbValue);
 
             TextView lastClimb = (TextView) findViewById(R.id.lastClimbing);
-            lastClimb.setText(teamInfo.getString("lastClimb"));
+            lastClimb.setText(teamInfo.getString("climb_last"));
 
-            double percentWheelCountValue = teamInfo.getDouble("percentWheelCount");
+            double percentWheelCountValue = teamInfo.getDouble("color_wheel_1_avg");
             TextView percentWheelCount = (TextView) findViewById(R.id.percentWheelCountText);
             percentWheelCount.setText(percentWheelCountValue + "%");
             ProgressBar percentWheelCountBar = (ProgressBar) findViewById(R.id.percentWheelCountBar);
             percentWheelCountBar.setProgress((int) percentWheelCountValue);
 
             TextView lastWheelCount = (TextView) findViewById(R.id.lastWheelCount);
-            lastWheelCount.setText(teamInfo.getString("lastWheelCount"));
+            lastWheelCount.setText(teamInfo.getString("color_wheel_1_last"));
 
-            double percentWheelColorValue = teamInfo.getDouble("percentWheelColor");
+            double percentWheelColorValue = teamInfo.getDouble("color_wheel_2_avg");
+            System.out.println("OREL: " + percentWheelColorValue);
             TextView percentWheelColor = (TextView) findViewById(R.id.percentWheelColorText);
             percentWheelColor.setText(percentWheelColorValue + "%");
             ProgressBar percentWheelColorBar = (ProgressBar) findViewById(R.id.percentWheelColorBar);
             percentWheelColorBar.setProgress((int) percentWheelColorValue);
 
             TextView lastWheelColor = (TextView) findViewById(R.id.lastWheelColor);
-            lastWheelColor.setText(teamInfo.getString("lastWheelColor"));
+            lastWheelColor.setText(teamInfo.getString("color_wheel_2_last"));
 
             TextView comments = (TextView) findViewById(R.id.comments);
             comments.setText(teamInfo.getString("comments"));
