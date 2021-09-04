@@ -129,8 +129,8 @@ public class ScoutingPrompt extends AppCompatActivity {
         thread.start();
 
         Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show();
-        Intent intent = getIntent();
         finish();
+        Intent intent = new Intent(this, GamesPage.class);
         startActivity(intent);
     }
 
