@@ -46,7 +46,7 @@ public class CoachInfoTeam extends AppCompatActivity {
         authentication = new JSONObject();
         try {
             authentication.put("id", sharedPref.getString("uid", "none"));
-            authentication.put("psw", sharedPref.getString("password", "none"));
+            authentication.put("psw", sharedPref.getString("psw", "none"));
             authentication.put("team", teamHash);
             System.out.println("ORI: " + authentication.toString());
             System.out.println(teamHash);

@@ -51,14 +51,14 @@ public class InitialUserAuthentication extends AppCompatActivity {
 		System.out.println("RAZ RAZ RAZ 1: " + sharedPref.getAll().toString());
 		editor = sharedPref.edit();
 
-		if (sharedPref.getString("password", "0").equals("0")) { // if didn't save anything for password must generate one and save it
-			editor.putString("password", genPass()); // save generated password
+		if (sharedPref.getString("psw", "0").equals("0")) { // if didn't save anything for password must generate one and save it
+			editor.putString("psw", genPass()); // save generated password
 			editor.apply();
 		}
 
 		LOGIN.setOnClickListener(v -> { // once PIN was entered and authentication has commenced
 			Thread thread = new Thread(() -> {
-				String pass = sharedPref.getString("password", "0");
+				String pass = sharedPref.getString("psw", "0");
 				String content = PIN.getText().toString();
 				int pin = Integer.parseInt(content.equals("") ? "0" : content); // protection from parsing error for empty value in PIN
 				JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin)); // generate JSON with password and PIN for auth
@@ -94,7 +94,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				System.out.println("RAZ RAZ RAZ 2: " + editor);
 				editor.putString("name", responseData.getString("name"));
 				editor.putString("role", responseData.getString("role"));
-				editor.putString("uid", responseData.getString("uid"));
+				editor.putInt("uid", responseData.getInt("uid"));
 				editor.apply();
 			} catch (JSONException e) {
 				e.printStackTrace();

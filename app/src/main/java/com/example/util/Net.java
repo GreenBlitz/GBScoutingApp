@@ -58,7 +58,7 @@ public class Net {
 
 		try {
 			for (int i = 0; i < keys.size(); i++) {
-				ret.put(keys.get(i).toString(), items.get(i).toString()); // Add entry to JSON with key and value.
+				ret.put(keys.get(i).toString(), items.get(i)); // Add entry to JSON with key and value.
 			}
 		} catch (JSONException e) {
 			e.printStackTrace(); // throws JSONException in case entry is unsuccessful

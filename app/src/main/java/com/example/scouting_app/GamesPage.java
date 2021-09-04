@@ -48,7 +48,7 @@ public class GamesPage extends AppCompatActivity {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE); // access phone memory
 
         Thread thread = new Thread(() -> {
-            String pass = sharedPref.getString("password", "0");
+            String pass = sharedPref.getString("psw", "0");
             int uid = sharedPref.getInt("uid", 0);
             JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("uid", uid)); // generate JSON with password and PIN for auth
             Net.Method method = Net.Method.GET;
@@ -155,7 +155,7 @@ public class GamesPage extends AppCompatActivity {
                     public void onClick(View v) {
                         assert v instanceof TextView;
 
-                        String role = "coach";
+                        String role = sharedPref.getString("role", "scouter");
 
                         Intent i;
                         switch (role) {
