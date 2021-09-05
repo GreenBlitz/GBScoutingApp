@@ -22,7 +22,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 	final String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
 	final int SIZE = 30; // pass size
 
-	// outer scope variables to be accessed by seperate threads
+	// outer scope variables to be accessed by separate threads
 	JSONObject responseData = null;
 	SharedPreferences sharedPref;
 	SharedPreferences.Editor editor;
