@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.ViewGroup;
@@ -23,132 +22,117 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CoachInfoTeam extends AppCompatActivity {
-    public static final String requestSubdomain = "coach/team";
-    private Intent intent;
-    private String teamHash;
-    static JSONObject teamInfo = null;
-    static JSONObject authentication;
+	public static final String requestSubdomain = "coach/team";
+	private Intent intent;
+	private String teamHash;
+	static JSONObject teamInfo = null;
+	static JSONObject authentication;
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coach_info_team);
+	@SuppressLint("SetTextI18n")
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_coach_info_team);
+		setTitle("Coach Information by Team");
 
-        setTitle("Coach Information by Team");
+		intent = getIntent();
+		teamHash = intent.getStringExtra("team");
+		SharedPreferences sharedPref = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
+		@SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 
-        intent = getIntent();
-        teamHash = intent.getStringExtra("team");
+		authentication = new JSONObject();
+		try {
+			authentication.put("id", sharedPref.getString("uid", "none"));
+			authentication.put("psw", sharedPref.getString("psw", "none"));
+			authentication.put("team", teamHash);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        SharedPreferences sharedPref = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
-        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
+		Thread net = new Thread(() -> {
+			Pair<JSONObject, Boolean> response = new Pair<>(null, false);
+			try {
+				response = Net.requestJSON(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			teamInfo = response.first;
+		});
+		net.start();
 
-        authentication = new JSONObject();
-        try {
-            authentication.put("id", sharedPref.getString("uid", "none"));
-            authentication.put("psw", sharedPref.getString("psw", "none"));
-            authentication.put("team", teamHash);
-            System.out.println("ORI: " + authentication.toString());
-            System.out.println(teamHash);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		long tStart = System.currentTimeMillis();
+		while (teamInfo == null && System.currentTimeMillis() - tStart < 5000) { // wait for response with timeout of 5 seconds to get data.
+		}
 
-        Thread net = new Thread(() -> {
-            Pair<JSONObject, Boolean> response = new Pair<>(null, false);
-            try {
-                response = Net.requestJSON(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+		try {
+			//define all the text views
+			TextView teamHash = findViewById(R.id.teamHash);
+			teamHash.setText(this.teamHash);
 
-            teamInfo = response.first;
-        });
-        net.start();
+			TextView winLoss = findViewById(R.id.winRate);
+			winLoss.setText(("" + teamInfo.getDouble("win_rate")).substring(0, 4) + "%");
 
-        long tStart = System.currentTimeMillis();
-        while (teamInfo == null && System.currentTimeMillis() - tStart < 5000) { // wait for response with timeout of 5 seconds to get data.
-        }
+			TextView ranking = findViewById(R.id.ranking);
+			ranking.setText(teamInfo.getString("ranking_or_alliance"));
 
-        System.out.println(teamInfo.toString());
+			TextView avgAuto = findViewById(R.id.avgAuto);
+			avgAuto.setText("" + teamInfo.getDouble("auto_balls_avg"));
+			TextView maxAuto = findViewById(R.id.maxAuto);
+			maxAuto.setText("" + teamInfo.getInt("auto_balls_max"));
 
-        try {
-            TextView teamHash = (TextView) findViewById(R.id.teamHash);
-            teamHash.setText(this.teamHash);
+			TextView avgTele = findViewById(R.id.avgTele);
+			avgTele.setText("" + teamInfo.getDouble("tele_balls_avg"));
+			TextView maxTele = findViewById(R.id.maxTele);
+			maxTele.setText("" + teamInfo.getInt("tele_balls_max"));
 
-            TextView winLoss = (TextView) findViewById(R.id.winRate);
-            winLoss.setText(("" + teamInfo.getDouble("win_rate")).substring(0, 4) + "%");
+			TextView avgCycles = findViewById(R.id.avgCycle);
+			avgCycles.setText("" + teamInfo.getDouble("cycles_avg"));
+			TextView maxCycles = findViewById(R.id.maxCycle);
+			maxCycles.setText("" + teamInfo.getInt("cycles_max"));
 
-            TextView ranking = (TextView) findViewById(R.id.ranking);
-            ranking.setText(teamInfo.getString("ranking_or_alliance"));
+			double percentClimbValue = teamInfo.getDouble("climb_avg");
+			TextView percentClimb = findViewById(R.id.percentClimbingText);
+			percentClimb.setText(percentClimbValue + "%");
+			ProgressBar percentClimbBar = findViewById(R.id.percentClimbingBar);
+			percentClimbBar.setProgress((int) percentClimbValue);
+			TextView lastClimb = findViewById(R.id.lastClimbing);
+			lastClimb.setText(teamInfo.getString("climb_last"));
 
-            TextView avgAuto = (TextView) findViewById(R.id.avgAuto);
-            avgAuto.setText("" + teamInfo.getDouble("auto_balls_avg"));
+			double percentWheelCountValue = teamInfo.getDouble("color_wheel_1_avg");
+			TextView percentWheelCount = findViewById(R.id.percentWheelCountText);
+			percentWheelCount.setText(percentWheelCountValue + "%");
+			ProgressBar percentWheelCountBar = findViewById(R.id.percentWheelCountBar);
+			percentWheelCountBar.setProgress((int) percentWheelCountValue);
+			TextView lastWheelCount = findViewById(R.id.lastWheelCount);
+			lastWheelCount.setText(teamInfo.getString("color_wheel_1_last"));
 
-            TextView maxAuto = (TextView) findViewById(R.id.maxAuto);
-            maxAuto.setText("" + teamInfo.getInt("auto_balls_max"));
+			double percentWheelColorValue = teamInfo.getDouble("color_wheel_2_avg");
+			TextView percentWheelColor = findViewById(R.id.percentWheelColorText);
+			percentWheelColor.setText(percentWheelColorValue + "%");
+			ProgressBar percentWheelColorBar = findViewById(R.id.percentWheelColorBar);
+			percentWheelColorBar.setProgress((int) percentWheelColorValue);
+			TextView lastWheelColor = findViewById(R.id.lastWheelColor);
+			lastWheelColor.setText(teamInfo.getString("color_wheel_2_last"));
 
-            TextView avgTele = (TextView) findViewById(R.id.avgTele);
-            avgTele.setText("" + teamInfo.getDouble("tele_balls_avg"));
+			TextView comments = findViewById(R.id.comments);
+			comments.setText(teamInfo.getString("comments"));
 
-            TextView maxTele = (TextView) findViewById(R.id.maxTele);
-            maxTele.setText("" + teamInfo.getInt("tele_balls_max"));
-
-            TextView avgCycles = (TextView) findViewById(R.id.avgCycle);
-            avgCycles.setText("" + teamInfo.getDouble("cycles_avg"));
-
-            TextView maxCycles = (TextView) findViewById(R.id.maxCycle);
-            maxCycles.setText("" + teamInfo.getInt("cycles_max"));
-
-            double percentClimbValue = teamInfo.getDouble("climb_avg");
-            TextView percentClimb = (TextView) findViewById(R.id.percentClimbingText);
-            percentClimb.setText(percentClimbValue + "%");
-            ProgressBar percentClimbBar = (ProgressBar) findViewById(R.id.percentClimbingBar);
-            percentClimbBar.setProgress((int) percentClimbValue);
-
-            TextView lastClimb = (TextView) findViewById(R.id.lastClimbing);
-            lastClimb.setText(teamInfo.getString("climb_last"));
-
-            double percentWheelCountValue = teamInfo.getDouble("color_wheel_1_avg");
-            TextView percentWheelCount = (TextView) findViewById(R.id.percentWheelCountText);
-            percentWheelCount.setText(percentWheelCountValue + "%");
-            ProgressBar percentWheelCountBar = (ProgressBar) findViewById(R.id.percentWheelCountBar);
-            percentWheelCountBar.setProgress((int) percentWheelCountValue);
-
-            TextView lastWheelCount = (TextView) findViewById(R.id.lastWheelCount);
-            lastWheelCount.setText(teamInfo.getString("color_wheel_1_last"));
-
-            double percentWheelColorValue = teamInfo.getDouble("color_wheel_2_avg");
-            System.out.println("OREL: " + percentWheelColorValue);
-            TextView percentWheelColor = (TextView) findViewById(R.id.percentWheelColorText);
-            percentWheelColor.setText(percentWheelColorValue + "%");
-            ProgressBar percentWheelColorBar = (ProgressBar) findViewById(R.id.percentWheelColorBar);
-            percentWheelColorBar.setProgress((int) percentWheelColorValue);
-
-            TextView lastWheelColor = (TextView) findViewById(R.id.lastWheelColor);
-            lastWheelColor.setText(teamInfo.getString("color_wheel_2_last"));
-
-            TextView comments = (TextView) findViewById(R.id.comments);
-            comments.setText(teamInfo.getString("comments"));
-
-
-            LinearLayout gamesPlayed = (LinearLayout) findViewById(R.id.gamesPlayed);
-            JSONArray games = teamInfo.getJSONArray("games");
-            for (int i = 0; i < games.length(); i++) {
-                TextView game = new TextView(this);
-                game.setText(games.getString(i));
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.setMargins(5, 5, 5, 5);
-                game.setLayoutParams(params);
-                game.setMaxLines(1);
-                game.setTextColor(Color.WHITE);
-                game.setTextSize(10);
-
-                gamesPlayed.addView(game);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+			LinearLayout gamesPlayed = findViewById(R.id.gamesPlayed);
+			JSONArray games = teamInfo.getJSONArray("games");
+			for (int i = 0; i < games.length(); i++) {
+				//set the games
+				TextView game = new TextView(this);
+				game.setText(games.getString(i));
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+				params.setMargins(5, 5, 5, 5);
+				game.setLayoutParams(params);
+				game.setMaxLines(1);
+				game.setTextColor(Color.WHITE);
+				game.setTextSize(10);
+				gamesPlayed.addView(game);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
 }
-

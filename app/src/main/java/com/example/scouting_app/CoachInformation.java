@@ -21,7 +21,6 @@ public class CoachInformation extends AppCompatActivity {
 
 	public CoachInformation() {
 		super();
-
 		teamHashes = new int[]{4590, 1574, 1619, 1687, 1690, 254};
 	}
 
@@ -32,17 +31,15 @@ public class CoachInformation extends AppCompatActivity {
 
 		setTitle("Coach Information");
 
-		featureSelection = (Spinner) findViewById(R.id.feature_selection);
+		featureSelection = findViewById(R.id.feature_selection);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.features,
 				android.R.layout.simple_spinner_dropdown_item);
-
 		featureSelection.setAdapter(adapter);
 		featureSelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-		@SuppressLint("CutPasteId") Spinner matchSelection = (Spinner) findViewById(R.id.feature_selection);
+		@SuppressLint("CutPasteId") Spinner matchSelection = findViewById(R.id.feature_selection);
 		ArrayAdapter<CharSequence> matchAdapter = ArrayAdapter.createFromResource(this, R.array.features,
 				android.R.layout.simple_spinner_dropdown_item);
-
 		matchSelection.setAdapter(matchAdapter);
 	}
 

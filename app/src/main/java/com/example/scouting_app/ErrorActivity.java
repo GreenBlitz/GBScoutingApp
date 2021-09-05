@@ -11,5 +11,6 @@ public class ErrorActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_error);
 		setTitle("ERROR");
+		//oh shit
 	}
 }
