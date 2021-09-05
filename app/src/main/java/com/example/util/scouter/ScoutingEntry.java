@@ -35,13 +35,14 @@ public class ScoutingEntry {
 	}
 
 	public void sendData() throws Exception {
+		// format scouting datas into two arrays
 		ArrayList<Object> keys = new ArrayList<>(), values = new ArrayList<>();
 		for (ScoutingData<Object> data : gameEntry) {
 			keys.add(data.getKey());
 			values.add(data.getValue());
 		}
 
-		System.out.println("jayson" + createJSON(keys, values).toString());
+		// post scouting data to server
 		Net.request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values));
 	}
 }

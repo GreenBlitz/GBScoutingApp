@@ -1,7 +1,7 @@
 package com.example.util.scouter;
 
 public class ScoutingData<T> {
-	private String key;
+	private String key; // basically a json entry
 	private T value;
 
 	public ScoutingData(String key, T value) {
@@ -26,6 +26,6 @@ public class ScoutingData<T> {
 	}
 
 	public String toString() {
-		return String.format(this.value instanceof String ? "\"%s\": \"%s\"" : "\"%s\": %s", this.key, this.value.toString());
+		return String.format(this.value instanceof String ? "\"%s\": \"%s\"" : "\"%s\": %s", this.key, this.value.toString()); // string representation for json, honestly JSONObject is much preferable
 	}
 }

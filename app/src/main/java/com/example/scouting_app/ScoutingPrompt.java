@@ -28,17 +28,22 @@ public class ScoutingPrompt extends AppCompatActivity {
 	int teleopBalls = 0;
 	boolean GreenBlitzColorsEnabled = false;
 	@SuppressLint("WrongViewCast")
+
+	// Vibration module on phone
+	private Vibrator vibrator;
+
 	//the views
 	private CheckBox RouletteWheelByRotations;
 	private CheckBox RouletteWheelByColor;
 	private EditText commentsView;
-	private Vibrator vibrator;
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
 	private TextView teamHash, gameID;
 	@SuppressLint("UseSwitchCompatOrMaterialCode")
 	private Switch climbed;
+
+	// access to phone memory and tranfer to other activities
 	SharedPreferences sharedPref;
 	Intent intent;
 
@@ -49,8 +54,11 @@ public class ScoutingPrompt extends AppCompatActivity {
 		setContentView(R.layout.activity_scouting_prompt);
 		setTitle("Scouting Prompt");
 
+		// initialize modules for memory and activity transfer
 		intent = getIntent();
 		sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+		// all view relevant to program initialized
 		cyclesView = findViewById(R.id.cycles);
 		autoBallsView = findViewById(R.id.autoBalls);
 		teleopBallsView = findViewById(R.id.teleopBalls);
@@ -69,7 +77,7 @@ public class ScoutingPrompt extends AppCompatActivity {
 	public void addPoints(View v) {
 		vibrator.vibrate(Constants.ScoutingPrompt.vibrationTime); //haptic feedback for buttons
 
-		switch (v.getId()) { //which button did dumb scouter press
+		switch (v.getId()) { //which button did scouter press
 			case R.id.moreAutoBalls:
 				autoBalls++;
 				break;
@@ -94,6 +102,7 @@ public class ScoutingPrompt extends AppCompatActivity {
 		autoBallsView.setText(String.valueOf(autoBalls));
 		teleopBallsView.setText(String.valueOf(teleopBalls));
 		//This is a weird way to do it but it's the only one that works ¯\_(ツ)_/¯
+		// technically you could do: ("" + int) but this way is cleaner
 	}
 
 	@SuppressLint("WrongViewCast")
@@ -125,8 +134,9 @@ public class ScoutingPrompt extends AppCompatActivity {
 			}
 		});
 		thread.start();
+
 		Toast.makeText(getApplicationContext(), "Scouting submitted!", Toast.LENGTH_SHORT).show(); //mmmm toast
-		finish(); Intent intent = new Intent(this, GamesPage.class); //refresh the page
+		Intent intent = new Intent(this, GamesPage.class); // go back to games page for additional scouting
 		startActivity(intent);
 	}
 

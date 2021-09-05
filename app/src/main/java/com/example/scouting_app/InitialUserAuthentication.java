@@ -21,6 +21,8 @@ import java.util.Random;
 public class InitialUserAuthentication extends AppCompatActivity {
 	final String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
 	final int SIZE = 30; // pass size
+
+	// outer scope variables to be accessed by seperate threads
 	JSONObject responseData = null;
 	SharedPreferences sharedPref;
 	SharedPreferences.Editor editor;
@@ -64,12 +66,15 @@ public class InitialUserAuthentication extends AppCompatActivity {
 			}
 			Thread thread = new Thread(() -> {
 				try {
+					// try to login first in case user has already been registered.
 					loginResponse = Net.requestJSON(Constants.Networking.serverURL.concat("auth/login?"), Net.Method.GET, login);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 				try {
+					// if response succeeded and the login was successful update name and role
 					if (loginResponse.second && loginResponse.first.getBoolean("success")) {
+						// update name and role in case one of the scouters didn't come or they have a different role throughout the competition
 						editor.putString("name", loginResponse.first.getString("name"));
 						editor.putString("role", loginResponse.first.getString("role"));
 					}
@@ -82,16 +87,19 @@ public class InitialUserAuthentication extends AppCompatActivity {
 					e.printStackTrace();
 				}
 				loginThreadDone = true;
+				// thread is done, so main thread can get viable information
 			});
 			thread.start();
 
 			long tStart = System.currentTimeMillis();
 			while (!loginThreadDone && System.currentTimeMillis() - tStart < 5000) {
+				// wait for networking thread to finish
 			}
-			if (loginResponse == null) {
+			if (loginResponse == null) { // if login request fell through be done since we aren't handling networking issues as of now
 				finish();
 			} else {
 				if (loginSuccessful) {
+					// if login was successful there is no need to register new user, go to games page
 					Intent i = new Intent(this, GamesPage.class);
 					startActivity(i);
 				}
@@ -111,7 +119,8 @@ public class InitialUserAuthentication extends AppCompatActivity {
 
 					boolean successful = false;
 					try {
-						Pair<JSONObject, Boolean> response = Net.requestJSON(destURL, method, data); // send authentication request
+						// send registration request to server based on PIN given by system admin
+						Pair<JSONObject, Boolean> response = Net.requestJSON(destURL, method, data);
 
 						responseData = response.first;
 						successful = response.second;
@@ -119,7 +128,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 						e.printStackTrace();
 					}
 					try {
-						assert responseData != null;
+						assert responseData != null; // hopefully the request actually worked so it doesn't die
 						uid = responseData.getInt("uid"); // temporary handling with response before embedding the response data in system
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -132,6 +141,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 					// wait for response with timeout of 5 seconds to get data.
 				}
 				try {
+					// save authentication credentials in phone memory
 					editor.putString("name", responseData.getString("name"));
 					editor.putString("role", responseData.getString("role"));
 					editor.putInt("uid", responseData.getInt("uid"));
@@ -140,6 +150,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 					e.printStackTrace();
 				}
 
+				// go to games page for scouter \ coach activities
 				Intent switchActivity; switchActivity = new Intent(this, GamesPage.class);
 				startActivity(switchActivity);
 
