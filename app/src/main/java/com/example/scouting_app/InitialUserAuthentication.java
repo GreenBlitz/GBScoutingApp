@@ -44,9 +44,13 @@ public class InitialUserAuthentication extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) throws NumberFormatException {
-		setTitle("Initial User Authentication");
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_init_user_auth);
+
 		EditText PIN = findViewById(R.id.ENTER_PIN);
 		Button LOGIN = findViewById(R.id.LOGIN);
+
+//		setTitle("Initial User Authentication");
 
 		sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
 		editor = sharedPref.edit();
@@ -68,6 +72,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				try {
 					// try to login first in case user has already been registered.
 					loginResponse = Net.requestJSON(Constants.Networking.serverURL.concat("auth/login?"), Net.Method.GET, login);
+					System.out.println(loginResponse.toString());
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -77,6 +82,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 						// update name and role in case one of the scouters didn't come or they have a different role throughout the competition
 						editor.putString("name", loginResponse.first.getString("name"));
 						editor.putString("role", loginResponse.first.getString("role"));
+						editor.commit();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -95,6 +101,7 @@ public class InitialUserAuthentication extends AppCompatActivity {
 			while (!loginThreadDone && System.currentTimeMillis() - tStart < 5000) {
 				// wait for networking thread to finish
 			}
+			loginThreadDone = false;
 			if (loginResponse == null) { // if login request fell through be done since we aren't handling networking issues as of now
 				finish();
 			} else {
@@ -104,9 +111,6 @@ public class InitialUserAuthentication extends AppCompatActivity {
 					startActivity(i);
 				}
 			}
-
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.activity_init_user_auth);
 
 			LOGIN.setOnClickListener(v -> { // once PIN was entered and authentication has commenced
 				Thread registerThread = new Thread(() -> {
