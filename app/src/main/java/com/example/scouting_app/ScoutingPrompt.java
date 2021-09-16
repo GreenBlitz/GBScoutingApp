@@ -39,11 +39,10 @@ public class ScoutingPrompt extends AppCompatActivity {
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
-	private TextView teamHash, gameID;
 	@SuppressLint("UseSwitchCompatOrMaterialCode")
 	private Switch climbed;
 
-	// access to phone memory and tranfer to other activities
+	// access to phone memory and transfer to other activities
 	SharedPreferences sharedPref;
 	Intent intent;
 
@@ -67,9 +66,9 @@ public class ScoutingPrompt extends AppCompatActivity {
 		RouletteWheelByRotations = findViewById(R.id.rotationCheckBox);
 		RouletteWheelByColor = findViewById(R.id.colorCheckBox);
 		climbed = findViewById(R.id.climbedSwitch);
-		teamHash = findViewById(R.id.team);
+		TextView teamHash = findViewById(R.id.team);
 		teamHash.setText(intent.getStringExtra("team"));
-		gameID = findViewById(R.id.game);
+		TextView gameID = findViewById(R.id.game);
 		gameID.setText(intent.getStringExtra("gameID"));
 	}
 
