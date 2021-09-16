@@ -155,7 +155,8 @@ public class InitialUserAuthentication extends AppCompatActivity {
 				}
 
 				// go to games page for scouter \ coach activities
-				Intent switchActivity; switchActivity = new Intent(this, GamesPage.class);
+				Intent switchActivity;
+				switchActivity = new Intent(this, GamesPage.class);
 				startActivity(switchActivity);
 
 			});
