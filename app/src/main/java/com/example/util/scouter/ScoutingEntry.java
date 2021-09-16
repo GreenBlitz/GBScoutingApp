@@ -1,6 +1,5 @@
 package com.example.util.scouter;
 
-import static com.example.util.Net.createJSON;
 
 import com.example.util.Constants;
 import com.example.util.Net;
