@@ -35,6 +35,8 @@
 	<string name="test">test</string>
 	<string name="togglebutton">ToggleButton</string>
 	<string name="greenblitz_new_logo">Greenblitz new logo</string>
-	<string name="error_msg">Oops, something went wrong</string>
+	<string name="error_msg">Error, status not found</string>
 	<string name="games_played">Games Played:</string>
+	<string name="send">send</string>
+	<string name="cancel">cancel</string>
 </resources>
