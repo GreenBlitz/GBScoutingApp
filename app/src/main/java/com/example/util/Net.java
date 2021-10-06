@@ -138,7 +138,6 @@ public class Net {
 	}
 
 	public static Pair<JSONObject, Boolean> requestJSON(String dest, Method method, JSONObject data) throws JSONException {
-		System.out.println("ITGIL: " +  data.toString());
 		Pair<String, Boolean> response = request(dest, method, data);
 		if (!response.second) {
 			return new Pair<>(null, false);

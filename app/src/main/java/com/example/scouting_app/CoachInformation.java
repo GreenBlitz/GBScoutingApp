@@ -35,7 +35,7 @@ public class CoachInformation extends AppCompatActivity {
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.features,
 				android.R.layout.simple_spinner_dropdown_item);
 		featureSelection.setAdapter(adapter);
-		featureSelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+//		featureSelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
 		@SuppressLint("CutPasteId") Spinner matchSelection = findViewById(R.id.feature_selection);
 		ArrayAdapter<CharSequence> matchAdapter = ArrayAdapter.createFromResource(this, R.array.features,

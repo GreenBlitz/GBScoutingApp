@@ -49,11 +49,12 @@ public class RegistrationPage extends AppCompatActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		/*
 		Thread thread = new Thread(() -> {
 			try {
 				// try to login first in case user has already been registered.
 				loginResponse = Net.requestJSON(Constants.Networking.serverURL.concat("auth/login?"), Net.Method.GET, login);
-				System.out.println(loginResponse.toString());
+				System.out.println("login response is (reg): " + loginResponse.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -82,19 +83,40 @@ public class RegistrationPage extends AppCompatActivity {
 		while (!loginThreadDone && System.currentTimeMillis() - tStart < 5000) {
 			// wait for networking thread to finish
 		}
+		System.out.println("data: " + responseData);
 		loginThreadDone = false;
-		if (loginResponse == null) { // if login request fell through be done since we aren't handling networking issues as of now
+		String role = null;
+		if (loginSuccessful) {
+			System.out.println("LOGIN SUCCESSFUL");
+			try {
+				role = loginResponse.first.getString("role");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			switch (role) {
+				case "scouter":
+					Intent scouterActivity = new Intent(this, GamesPage.class);
+					startActivity(scouterActivity);
+					break;
+				case "coach":
+					Intent coachActivity = new Intent(this, CoachInformation.class);
+					startActivity(coachActivity);
+					break;
+				default:
+					Intent errorActivity = new Intent(this, ErrorActivity.class);
+					startActivity(errorActivity);
+					break;
+			}
+		} else if (loginResponse == null) {
+			// if login request fell through be done since we aren't handling networking issues as of now
 			Intent switchActivity = new Intent(this, ErrorActivity.class);
 			startActivity(switchActivity);
-		} else {
-			if (loginSuccessful) {
-				// if login was successful there is no need to register new user, go to games page
-				Intent switchActivity = new Intent(this, GamesPage.class);
-				startActivity(switchActivity);
-			}
 		}
+		System.out.println("role is: " + role);
+		*/
+		LOGIN.setOnClickListener(v ->
 
-		LOGIN.setOnClickListener(v -> { // once PIN was entered and authentication has commenced
+		{ // once PIN was entered and authentication has commenced
 			Thread registerThread = new Thread(() -> {
 				String pass = sharedPref.getString("psw", "0");
 				String content = PIN.getText().toString();
@@ -134,11 +156,6 @@ public class RegistrationPage extends AppCompatActivity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-
-			// go to games page for scouter \ coach activities
-			Intent switchActivity = new Intent(this, GamesPage.class);
-			startActivity(switchActivity);
-
 		});
 	}
 }

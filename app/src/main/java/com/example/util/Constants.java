@@ -3,7 +3,7 @@ package com.example.util;
 public class Constants {
 
 	public static class Networking {
-		public static final String serverURL = "http://192.168.43.117:5000/";
+		public static final String serverURL = "http://192.168.1.6:5000/";
 		// the absolute IP of the server after port forwarding
 		// this is not final since we did not get an open port for our permanent server
 	}

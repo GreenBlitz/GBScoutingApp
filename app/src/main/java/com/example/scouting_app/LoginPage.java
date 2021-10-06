@@ -18,6 +18,7 @@ import java.util.Random;
 
 public class LoginPage extends AppCompatActivity {
 	final String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
+	final int MAX_WAIT_TIME = 2 * 60;
 	final int SIZE = 30; // pass size
 	SharedPreferences sharedPref;
 	SharedPreferences.Editor editor;
@@ -52,6 +53,7 @@ public class LoginPage extends AppCompatActivity {
 			editor.apply();
 			Intent switchActivity = new Intent(this, RegistrationPage.class);
 			startActivity(switchActivity);
+			return;
 		}
 		JSONObject login = new JSONObject();
 		try {
@@ -65,7 +67,7 @@ public class LoginPage extends AppCompatActivity {
 			try {
 				// try to login first in case user has already been registered.
 				loginResponse = Net.requestJSON(Constants.Networking.serverURL.concat("auth/login?"), Net.Method.GET, login);
-				System.out.println(loginResponse.toString());
+				System.out.println("login response is (log): " + loginResponse.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -90,19 +92,40 @@ public class LoginPage extends AppCompatActivity {
 		});
 		thread.start();
 		long tStart = System.currentTimeMillis();
-		while (!loginThreadDone && System.currentTimeMillis() - tStart < 5000) {
+		while (!loginThreadDone && System.currentTimeMillis() - tStart < 1000 * MAX_WAIT_TIME) {
 			// wait 5s for networking thread to finish
 		}
+
+		System.out.println("data: " + loginResponse);
 		loginThreadDone = false;
-		if (loginResponse == null) { // if login request fell through be done since we aren't handling networking issues as of now
+		String role = null;
+		if (loginSuccessful) {
+			System.out.println("LOGIN SUCCESSFUL");
+			try {
+				role = loginResponse.first.getString("role");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			switch (role) {
+				case "scouter":
+					Intent scouterActivity = new Intent(this, GamesPage.class);
+					startActivity(scouterActivity);
+					break;
+				case "coach":
+					Intent coachActivity = new Intent(this, CoachInformation.class);
+					startActivity(coachActivity);
+					break;
+				default:
+					Intent errorActivity = new Intent(this, ErrorActivity.class);
+					startActivity(errorActivity);
+					break;
+			}
+		} else if (loginResponse == null) {
+			System.out.println("LOGIN FAILED");
+			// if login request fell through be done since we aren't handling networking issues as of now
 			Intent switchActivity = new Intent(this, ErrorActivity.class);
 			startActivity(switchActivity);
-		} else {
-			if (loginSuccessful) {
-				// if login was successful there is no need to register new user, go to games page
-				Intent switchActivity = new Intent(this, GamesPage.class);
-				startActivity(switchActivity);
-			}
 		}
+		System.out.println("role is: " + role);
 	}
 }
