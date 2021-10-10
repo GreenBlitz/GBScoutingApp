@@ -5,7 +5,7 @@ import com.example.util.scouter.*;
 import java.util.Queue;
 
 public class NetworkIssuesHandling {
-    private static Queue<> entries;
+    private static Queue<Request> entries;
 
 
 }

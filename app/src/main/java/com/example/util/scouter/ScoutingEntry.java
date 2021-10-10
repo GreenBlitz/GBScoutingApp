@@ -3,7 +3,7 @@ package com.example.util.scouter;
 
 import com.example.util.Constants;
 import com.example.util.Net;
-
+import static com.example.util.Net.createJSON;
 import java.util.ArrayList;
 import java.util.Collections;
 
