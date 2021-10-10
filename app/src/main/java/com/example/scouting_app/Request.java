@@ -4,68 +4,88 @@ import android.util.Pair;
 
 import com.example.util.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.util.*;
-
 public class Request {
-    private String url;
-    private Net.Method method;
-    private JSONObject data;
+	private String url;
+	private Net.Method method;
+	private JSONObject data;
+	private int waitTime;
 
-    public Request(String url, Net.Method method, JSONObject data) {
-        this.url = url;
-        this.method = method;
-        this.data = data;
-    }
+	public Request(String url, Net.Method method, JSONObject data, int waitSeconds) {
+		this.url = url;
+		this.method = method;
+		this.data = data;
+		this.waitTime = waitSeconds * 1000;
+	}
+	public Request(String url, Net.Method method, JSONObject data) {
+		this(url, method, data, 5);
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public Net.Method getMethod() {
-        return method;
-    }
+	public Net.Method getMethod() {
+		return method;
+	}
 
-    public void setMethod(Net.Method method) {
-        this.method = method;
-    }
+	public void setMethod(Net.Method method) {
+		this.method = method;
+	}
 
-    public JSONObject getData() {
-        return data;
-    }
+	public JSONObject getData() {
+		return data;
+	}
 
-    public void setData(JSONObject data) {
-        this.data = data;
-    }
+	public void setData(JSONObject data) {
+		this.data = data;
+	}
 
-    boolean successfull, done = false;
+	boolean successful, done = false;
 
-    public boolean send() {
-        Thread thread = new Thread(() -> {
-            boolean done = false;
-            try {
-                // send registration request to server based on PIN given by system admin
-                Pair<JSONObject, Boolean> response = Net.requestJSON(url, method, data);
+	public boolean send() {
+		Thread thread = new Thread(() -> {
+			boolean done = false;
+			try {
+				// send registration request to server based on PIN given by system admin
+				Pair<String, Boolean> response = Net.request(url, method, data);
 
-                this.successfull = response.second;
-                this.done = true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+				this.successful = response.second;
+				this.done = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 
-        thread.start();
-        long tStartRegister = System.currentTimeMillis();
-        while (!done && System.currentTimeMillis() - tStartRegister < 5000) {
-            // wait for response with timeout of 5 seconds to get data.
-        }
+		thread.start();
+		long tStartRegister = System.currentTimeMillis();
+		while (!done && System.currentTimeMillis() - tStartRegister < waitTime) {
+			// wait for response with timeout of 5 seconds to get data.
+		}
 
-        return successfull;
-    }
+		return successful;
+	}
+
+	public int getWaitTime() {
+		return waitTime;
+	}
+
+	public void setWaitTime(int waitTime) {
+		this.waitTime = waitTime;
+	}
+
+	public JSONObject toJSON() {
+		return Net.createJSON(new Pair<>("url", this.url), new Pair<>("method", this.method.toString()), new Pair<>("data", data), new Pair<>("waitTime", this.waitTime));
+	}
+
+	public static Request fromJSON(JSONObject json) throws JSONException {
+		return new Request(json.getString("url"), Net.Method.valueOf(json.getString("method")), json.getJSONObject("data"), json.getInt("waitTime"));
+	}
 }

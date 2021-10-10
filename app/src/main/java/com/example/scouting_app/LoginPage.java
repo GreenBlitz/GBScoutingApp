@@ -42,6 +42,7 @@ public class LoginPage extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_page);
 		setTitle("Login Page");
+		NetworkIssuesHandling.init(getSharedPreferences("savedRequests", Context.MODE_PRIVATE));
 		Thread thread = new Thread(this::login);
 		thread.start();
 		INSTANCE = this;

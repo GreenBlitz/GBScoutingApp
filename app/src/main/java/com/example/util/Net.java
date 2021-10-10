@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Net {
 
@@ -43,10 +44,10 @@ public class Net {
 		return ret;
 	}
 
-	public static JSONObject createJSON(ArrayList<Object> keys, ArrayList<Object> items) throws AssertionError {
+	public static JSONObject createJSON(List<Object> keys, List<Object> items) throws AssertionError {
 		/**
-		 * @param keys: ArrayList of key objects.
-		 * @param items: ArrayList of value objects.
+		 * @param keys: List of key objects.
+		 * @param items: List of value objects.
 		 * @returns: JSON object containing all items with the key as keys values and value as items values.
 		 *
 		 * requirement: can't have to Pairs with the same key.

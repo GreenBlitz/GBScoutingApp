@@ -71,8 +71,6 @@ public class ScoutingPrompt extends AppCompatActivity {
 		teamHash.setText(intent.getStringExtra("team"));
 		TextView gameID = findViewById(R.id.game);
 		gameID.setText(intent.getStringExtra("gameID"));
-
-
 	}
 
 

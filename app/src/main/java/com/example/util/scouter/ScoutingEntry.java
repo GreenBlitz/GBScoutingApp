@@ -1,9 +1,13 @@
 package com.example.util.scouter;
 
 
+import com.example.scouting_app.NetworkIssuesHandling;
+import com.example.scouting_app.Request;
 import com.example.util.Constants;
 import com.example.util.Net;
+
 import static com.example.util.Net.createJSON;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,8 +44,8 @@ public class ScoutingEntry {
 			keys.add(data.getKey());
 			values.add(data.getValue());
 		}
-
+		NetworkIssuesHandling.addToQueue(new Request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values)));
 		// post scouting data to server
-		Net.request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values));
+//		Net.request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values));
 	}
 }
