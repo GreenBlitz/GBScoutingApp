@@ -25,7 +25,7 @@ public class RegistrationPage extends AppCompatActivity {
 	private boolean loginSuccessful;
 	private Pair<JSONObject, Boolean> loginResponse = null;
 	private boolean loginThreadDone = false;
-
+	final int MAX_WAIT_TIME = 10;
 	static int uid = -1;
 
 	@Override
@@ -49,9 +49,7 @@ public class RegistrationPage extends AppCompatActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		LOGIN.setOnClickListener(v ->
-
-		{ // once PIN was entered and authentication has commenced
+		LOGIN.setOnClickListener(v -> { // once PIN was entered and authentication has commenced
 			Thread registerThread = new Thread(() -> {
 				String pass = sharedPref.getString("psw", "0");
 				String content = PIN.getText().toString();
@@ -79,7 +77,7 @@ public class RegistrationPage extends AppCompatActivity {
 
 			registerThread.start();
 			long tStartRegister = System.currentTimeMillis();
-			while (uid == -1 && System.currentTimeMillis() - tStartRegister < 5000) {
+			while (uid == -1 && System.currentTimeMillis() - tStartRegister < MAX_WAIT_TIME * 1000) {
 				// wait for response with timeout of 5 seconds to get data.
 			}
 			try {
@@ -88,6 +86,7 @@ public class RegistrationPage extends AppCompatActivity {
 				editor.putString("role", responseData.getString("role"));
 				editor.putInt("uid", responseData.getInt("uid"));
 				editor.apply();
+				LoginPage.INSTANCE.login();
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

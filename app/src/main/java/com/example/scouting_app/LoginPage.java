@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class LoginPage extends AppCompatActivity {
 	final String POOL = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; // all possible letters for pass
-	final int MAX_WAIT_TIME = 2 * 60;
+	final int MAX_WAIT_TIME = 10;
 	final int SIZE = 30; // pass size
 	SharedPreferences sharedPref;
 	SharedPreferences.Editor editor;
@@ -26,6 +26,7 @@ public class LoginPage extends AppCompatActivity {
 	private boolean loginSuccessful;
 	private Pair<JSONObject, Boolean> loginResponse = null;
 	private boolean loginThreadDone = false;
+	public static LoginPage INSTANCE;
 
 	public String genPass() {
 		String ret = "";
@@ -43,6 +44,7 @@ public class LoginPage extends AppCompatActivity {
 		setTitle("Login Page");
 		Thread thread = new Thread(this::login);
 		thread.start();
+		INSTANCE = this;
 	}
 
 	public void login() {
@@ -108,11 +110,13 @@ public class LoginPage extends AppCompatActivity {
 			}
 			switch (role) {
 				case "scouter":
+					System.out.println("SCOUTER");
 					Intent scouterActivity = new Intent(this, GamesPage.class);
 					startActivity(scouterActivity);
 					break;
 				case "coach":
-					Intent coachActivity = new Intent(this, CoachInformation.class);
+					System.out.println("COACH");
+					Intent coachActivity = new Intent(this, GamesPage.class);
 					startActivity(coachActivity);
 					break;
 				default:
