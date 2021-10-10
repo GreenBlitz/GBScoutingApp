@@ -1,11 +1,12 @@
 package com.example.scouting_app;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Vibrator; //haha
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -39,11 +40,10 @@ public class ScoutingPrompt extends AppCompatActivity {
 	private TextView autoBallsView;
 	private TextView cyclesView;
 	private TextView teleopBallsView;
-	private TextView teamHash, gameID;
 	@SuppressLint("UseSwitchCompatOrMaterialCode")
 	private Switch climbed;
 
-	// access to phone memory and tranfer to other activities
+	// access to phone memory and transfer to other activities
 	SharedPreferences sharedPref;
 	Intent intent;
 
@@ -67,11 +67,14 @@ public class ScoutingPrompt extends AppCompatActivity {
 		RouletteWheelByRotations = findViewById(R.id.rotationCheckBox);
 		RouletteWheelByColor = findViewById(R.id.colorCheckBox);
 		climbed = findViewById(R.id.climbedSwitch);
-		teamHash = findViewById(R.id.team);
+		TextView teamHash = findViewById(R.id.team);
 		teamHash.setText(intent.getStringExtra("team"));
-		gameID = findViewById(R.id.game);
+		TextView gameID = findViewById(R.id.game);
 		gameID.setText(intent.getStringExtra("gameID"));
+
+
 	}
+
 
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
 	public void addPoints(View v) {
@@ -107,7 +110,20 @@ public class ScoutingPrompt extends AppCompatActivity {
 
 	@SuppressLint("WrongViewCast")
 	public void submit(View v) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setPositiveButton(R.string.send, (dialog, id) -> {
+			// User clicked OK button
+			sendData();
+		});
+		builder.setNegativeButton(R.string.cancel, (dialog, id) -> {
+			// User cancelled the dialog
+		});
+		builder.setTitle("Submit scouting report?");
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
 
+	public void sendData() {
 		Thread thread = new Thread(() -> {
 			//create all the data in the form of ScoutingData
 			ScoutingData<Object> teamNumInfo = new ScoutingData<>("team", intent.getStringExtra("team"));

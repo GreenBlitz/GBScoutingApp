@@ -27,6 +27,7 @@ public class CoachInfoTeam extends AppCompatActivity {
     private String teamHash;
     static JSONObject teamInfo = null;
     static JSONObject authentication;
+    SharedPreferences sharedPref;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -37,16 +38,18 @@ public class CoachInfoTeam extends AppCompatActivity {
 
         intent = getIntent();
         teamHash = intent.getStringExtra("team");
-        SharedPreferences sharedPref = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
+        sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE); // access phone memory
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPref.edit();
 
         authentication = new JSONObject();
         try {
             //create json object for coach identity authentication
-            authentication.put("id", sharedPref.getString("uid", "none"));
+            authentication.put("id", String.valueOf(sharedPref.getInt("uid", 0)));
             authentication.put("psw", sharedPref.getString("psw", "none"));
-            authentication.put("team", teamHash);
+            authentication.put("team", String.valueOf(teamHash));
+            System.out.println("Mission failed successfully");
         } catch (Exception e) {
+            System.out.println("auth failed");
             e.printStackTrace();
         }
 
