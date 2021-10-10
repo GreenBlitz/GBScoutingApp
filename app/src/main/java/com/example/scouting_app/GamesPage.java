@@ -68,7 +68,10 @@ public class GamesPage extends AppCompatActivity {
 
 		JSONArray arr = null;
 		try {
-			arr = (JSONArray) responseData.get("games");
+			while (arr == null) {
+
+				arr = (JSONArray) responseData.get("games");
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
