@@ -14,6 +14,8 @@ public class LoadingPage extends AppCompatActivity {
 	private Activity nextActivity;
 	private boolean done;
 
+	public static int WAIT_TIME = 1000;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,14 +33,18 @@ public class LoadingPage extends AppCompatActivity {
 	public void sendShit() {
 		while (!done) {
 			periodic();
+			try {
+				Thread.sleep(WAIT_TIME);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public void periodic() {
-		Pair<String, Boolean> response = Net.request(r.getUrl(), r.getMethod(), r.getData());
-		if(response.second) {
+		if(r.send()) {
 			Intent transfer = new Intent(this, nextActivity.getClass());
-			transfer.putExtra("data", response.first);
+			transfer.putExtra("data", r.getResponse());
 			startActivity(transfer);
 			done = true;
 		}

@@ -13,6 +13,7 @@ public class Request {
 	private Net.Method method;
 	private JSONObject data;
 	private int waitTime;
+	private String response;
 
 	public Request(String url, Net.Method method, JSONObject data, int waitSeconds) {
 		this.url = url;
@@ -58,6 +59,7 @@ public class Request {
 				Pair<String, Boolean> response = Net.request(url, method, data);
 
 				this.successful = response.second;
+				this.response = response.first;
 				this.done = true;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -87,5 +89,17 @@ public class Request {
 
 	public static Request fromJSON(JSONObject json) throws JSONException {
 		return new Request(json.getString("url"), Net.Method.valueOf(json.getString("method")), json.getJSONObject("data"), json.getInt("waitTime"));
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public JSONObject getResponseJSON() throws JSONException {
+		return new JSONObject(response);
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
 	}
 }
