@@ -1,7 +1,6 @@
 package com.example.scouting_app;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
@@ -56,7 +55,7 @@ public class RegistrationPage extends AppCompatActivity {
 				int pin = Integer.parseInt(content.equals("") ? "0" : content); // protection from parsing error for empty value in PIN
 				JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("PIN", pin)); // generate JSON with password and PIN for auth
 				Net.Method method = Net.Method.GET;
-				String destURL = Constants.Networking.serverURL.concat("auth/register?");
+				String destURL = Constants.Networking.SERVER_URL.concat("auth/register?");
 
 				boolean successful = false;
 				try {

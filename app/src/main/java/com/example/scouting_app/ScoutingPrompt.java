@@ -76,7 +76,7 @@ public class ScoutingPrompt extends AppCompatActivity {
 
 	@SuppressLint({"NonConstantResourceId", "SetTextI18n"})
 	public void addPoints(View v) {
-		vibrator.vibrate(Constants.ScoutingPrompt.vibrationTime); //haptic feedback for buttons
+		vibrator.vibrate(Constants.ScoutingPrompt.VIBRATION_TIME); //haptic feedback for buttons
 
 		switch (v.getId()) { //which button did scouter press
 			case R.id.moreAutoBalls:

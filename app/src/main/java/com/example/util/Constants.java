@@ -3,13 +3,13 @@ package com.example.util;
 public class Constants {
 
 	public static class Networking {
-		public static final String serverURL = "http://192.168.1.48:5000/";
+		public static final String SERVER_URL = "http://192.168.1.48:5000/";
 		// the absolute IP of the server after port forwarding
 		// this is not final since we did not get an open port for our permanent server
 	}
 
 	public static class ScoutingPrompt {
-		public static final int vibrationTime = 35; //milliseconds
+		public static final int VIBRATION_TIME = 35; //milliseconds
 	}
 
 	public static class GamesPage {

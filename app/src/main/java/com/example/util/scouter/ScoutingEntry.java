@@ -44,7 +44,7 @@ public class ScoutingEntry {
 			keys.add(data.getKey());
 			values.add(data.getValue());
 		}
-		NetworkIssuesHandling.addToQueue(new Request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values)));
+		NetworkIssuesHandling.addToQueue(new Request(Constants.Networking.SERVER_URL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values)));
 		// post scouting data to server
 //		Net.request(Constants.Networking.serverURL.concat(dataSubdomain), Net.Method.POST, createJSON(keys, values));
 	}

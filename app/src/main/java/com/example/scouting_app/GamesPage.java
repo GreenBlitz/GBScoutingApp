@@ -26,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GamesPage extends AppCompatActivity {
-
+	private static final String SERIALIZED_GAMES_KEY = "games";
 	LinearLayout mainTable;
 	JSONObject responseData = null;
 	private static int ids;
@@ -49,7 +49,7 @@ public class GamesPage extends AppCompatActivity {
 			int uid = sharedPref.getInt("uid", 0);
 			JSONObject data = Net.createJSON(new Pair<>("pass", pass), new Pair<>("uid", uid)); //generate JSON with password and PIN for auth
 			Net.Method method = Net.Method.GET; //create the JSON and get the GET method
-			String destURL = Constants.Networking.serverURL.concat("general/games?");
+			String destURL = Constants.Networking.SERVER_URL.concat("general/games?");
 			boolean successful = false;
 			try {
 				// send authentication requesting games from server
@@ -69,8 +69,13 @@ public class GamesPage extends AppCompatActivity {
 		JSONArray arr = null;
 		try {
 			while (arr == null) {
-
-				arr = (JSONArray) responseData.get("games");
+				if(responseData == null){
+					arr = new JSONArray(sharedPref.getString(SERIALIZED_GAMES_KEY, null));
+				}
+				else {
+					arr = (JSONArray) responseData.get("games");
+					sharedPref.edit().putString(SERIALIZED_GAMES_KEY, responseData.get("games").toString()).apply();
+				}
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

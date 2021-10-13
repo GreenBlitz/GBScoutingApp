@@ -69,7 +69,7 @@ public class LoginPage extends AppCompatActivity {
 		Thread thread = new Thread(() -> {
 			try {
 				// try to login first in case user has already been registered.
-				loginResponse = Net.requestJSON(Constants.Networking.serverURL.concat("auth/login?"), Net.Method.GET, login);
+				loginResponse = Net.requestJSON(Constants.Networking.SERVER_URL.concat("auth/login?"), Net.Method.GET, login);
 				System.out.println("login response is (log): " + loginResponse.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();

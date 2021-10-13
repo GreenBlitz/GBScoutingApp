@@ -57,7 +57,7 @@ public class CoachInfoTeam extends AppCompatActivity {
             Pair<JSONObject, Boolean> response = new Pair<>(null, false);
             try {
                 // send request to server requesting the team info to present
-                response = Net.requestJSON(Constants.Networking.serverURL + requestSubdomain, Net.Method.GET, authentication);
+                response = Net.requestJSON(Constants.Networking.SERVER_URL + requestSubdomain, Net.Method.GET, authentication);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

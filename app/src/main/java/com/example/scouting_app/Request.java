@@ -21,6 +21,7 @@ public class Request {
 		this.data = data;
 		this.waitTime = waitSeconds * 1000;
 	}
+
 	public Request(String url, Net.Method method, JSONObject data) {
 		this(url, method, data, 5);
 	}
@@ -52,10 +53,11 @@ public class Request {
 	boolean successful, done = false;
 
 	public boolean send() {
+		this.done = false;
 		Thread thread = new Thread(() -> {
-			boolean done = false;
 			try {
 				// send registration request to server based on PIN given by system admin
+
 				Pair<String, Boolean> response = Net.request(url, method, data);
 
 				this.successful = response.second;
@@ -88,7 +90,7 @@ public class Request {
 	}
 
 	public static Request fromJSON(JSONObject json) throws JSONException {
-		return new Request(json.getString("url"), Net.Method.valueOf(json.getString("method")), json.getJSONObject("data"), json.getInt("waitTime"));
+		return new Request(json.getString("url"), Net.Method.valueOf(json.getString("method")), new JSONObject(json.getString("data")), json.getInt("waitTime"));
 	}
 
 	public String getResponse() {
