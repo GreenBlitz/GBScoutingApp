@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
-
-import com.example.util.Net;
 
 public class LoadingPage extends AppCompatActivity {
 	private Request r;
@@ -19,7 +16,7 @@ public class LoadingPage extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_load_games_page);
+		setContentView(R.layout.activity_loading_page);
 
 		new Thread(this::sendShit).start();
 	}
