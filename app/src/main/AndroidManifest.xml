@@ -18,7 +18,8 @@
         tools:targetApi="n">
         <activity
             android:name=".LoadingPage"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".LoginPage"
             android:exported="true"
@@ -26,7 +27,6 @@
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
