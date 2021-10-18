@@ -16,12 +16,12 @@ import com.example.scouting_app.R;
 
 import java.util.ArrayList;
 
-public class CoachInformation extends AppCompatActivity {
+public class CoachInformationPage extends AppCompatActivity {
 
 	private int[] teamHashes;
 	private Spinner featureSelection;
 
-	public CoachInformation() {
+	public CoachInformationPage() {
 		super();
 		teamHashes = new int[]{4590, 1574, 1619, 1687, 1690, 254};
 	}

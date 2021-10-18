@@ -24,7 +24,7 @@ import com.example.util.scouter.ScoutingEntry;
 
 import java.util.Objects;
 
-public class ScoutingPrompt extends AppCompatActivity {
+public class ScoutingPromptPage extends AppCompatActivity {
 	//Scouting info
 	int cycles = 0;
 	int autoBalls = 0;

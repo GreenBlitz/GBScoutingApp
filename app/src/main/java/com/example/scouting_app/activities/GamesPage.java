@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.scouting_app.R;
-import com.example.scouting_app.activities.bs.ErrorActivity;
+import com.example.scouting_app.activities.bs.ErrorPage;
 import com.example.util.Constants;
 import com.example.util.Net;
 
@@ -162,15 +162,15 @@ public class GamesPage extends AppCompatActivity {
 					// create dynamic transfer from games activity to either scouting prompt or coach team info
 					switch (role) {
 						case "scouter":
-							newIntent = new Intent(GamesPage.this, ScoutingPrompt.class);
+							newIntent = new Intent(GamesPage.this, ScoutingPromptPage.class);
 							@SuppressLint("ResourceType") TextView gameID1 = findViewById(v.getId() - (v.getId() % 8) + 4);
 							newIntent.putExtra("gameID", (String) gameID1.getText()); // give scouting prompt information for game which is being scouted
 							break;
 						case "coach":
-							newIntent = new Intent(GamesPage.this, CoachInfoTeam.class);
+							newIntent = new Intent(GamesPage.this, CoachInfoTeamPage.class);
 							break;
 						default:
-							newIntent = new Intent(GamesPage.this, ErrorActivity.class);
+							newIntent = new Intent(GamesPage.this, ErrorPage.class);
 							break;
 					}
 					newIntent.putExtra("team", (String) ((TextView) v).getText()); // transfer allocated team in intent

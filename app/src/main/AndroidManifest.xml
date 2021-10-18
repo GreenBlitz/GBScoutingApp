@@ -41,22 +41,22 @@
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />
 		<activity
-			android:name=".activities.ScoutingPrompt"
+			android:name=".activities.ScoutingPromptPage"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />
 		<activity
-			android:name=".activities.CoachInformation"
+			android:name=".activities.CoachInformationPage"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />
 		<activity
-			android:name=".activities.CoachInfoTeam"
+			android:name=".activities.CoachInfoTeamPage"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />
 		<activity
-			android:name=".activities.bs.ErrorActivity"
+			android:name=".activities.bs.ErrorPage"
 			android:exported="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />

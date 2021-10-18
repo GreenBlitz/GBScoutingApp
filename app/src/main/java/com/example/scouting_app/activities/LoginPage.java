@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scouting_app.networking.NetworkIssuesHandling;
 import com.example.scouting_app.R;
-import com.example.scouting_app.activities.bs.ErrorActivity;
+import com.example.scouting_app.activities.bs.ErrorPage;
 import com.example.util.Constants;
 import com.example.util.Net;
 
@@ -124,14 +124,14 @@ public class LoginPage extends AppCompatActivity {
 					startActivity(coachActivity);
 					break;
 				default:
-					Intent errorActivity = new Intent(this, ErrorActivity.class);
+					Intent errorActivity = new Intent(this, ErrorPage.class);
 					startActivity(errorActivity);
 					break;
 			}
 		} else if (loginResponse == null) {
 			System.out.println("LOGIN FAILED");
 			// if login request fell through be done since we aren't handling networking issues as of now
-			Intent switchActivity = new Intent(this, ErrorActivity.class);
+			Intent switchActivity = new Intent(this, ErrorPage.class);
 			startActivity(switchActivity);
 		}
 		System.out.println("role is: " + role);

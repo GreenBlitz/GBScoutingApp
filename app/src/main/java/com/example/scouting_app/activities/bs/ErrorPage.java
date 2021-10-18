@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scouting_app.R;
 
-public class ErrorActivity extends AppCompatActivity {
+public class ErrorPage extends AppCompatActivity {
 	private SoundPool soundPool;
 	private AudioManager audio;
 	private int richardRotation;

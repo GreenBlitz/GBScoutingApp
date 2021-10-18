@@ -22,7 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CoachInfoTeam extends AppCompatActivity {
+public class CoachInfoTeamPage extends AppCompatActivity {
 	public static final String requestSubdomain = "coach/team";
 	private Intent intent;
 	private String teamHash;

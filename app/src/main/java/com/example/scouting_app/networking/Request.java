@@ -58,7 +58,6 @@ public class Request {
 				// send registration request to server based on PIN given by system admin
 
 				Pair<String, Boolean> response = Net.request(url, method, data);
-
 				this.successful = response.second;
 				this.response = response.first;
 				this.done = true;

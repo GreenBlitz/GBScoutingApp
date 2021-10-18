@@ -23,7 +23,7 @@ public class RegistrationPage extends AppCompatActivity {
 	JSONObject responseData = null;
 	SharedPreferences sharedPref;
 	SharedPreferences.Editor editor;
-	private boolean loginSuccessful;
+	private boolean loginSuccessful = false;
 	private Pair<JSONObject, Boolean> loginResponse = null;
 	private boolean loginThreadDone = false;
 	final int MAX_WAIT_TIME = 10;

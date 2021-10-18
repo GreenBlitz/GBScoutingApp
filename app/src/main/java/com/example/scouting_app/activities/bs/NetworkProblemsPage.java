@@ -12,5 +12,6 @@ public class NetworkProblemsPage extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_network_problems_page);
+		//שרץ?
 	}
 }

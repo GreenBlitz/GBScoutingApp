@@ -17,9 +17,7 @@ public class NetworkIssuesHandling {
 	private static void serialize() {
 		JSONArray jsonArray = new JSONArray();
 
-		for (Request req : entries) {
-			jsonArray.put(req.toJSON());
-		}
+		for (Request req : entries) jsonArray.put(req.toJSON());
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString(SERIALIZE_KEY, jsonArray.toString());
 		editor.apply();

@@ -10,7 +10,7 @@ import com.example.scouting_app.R;
 import com.example.scouting_app.networking.Request;
 
 public class LoadingPage extends AppCompatActivity {
-	private Request r;
+	private Request request;
 	private Activity nextActivity;
 	private boolean done;
 
@@ -24,9 +24,9 @@ public class LoadingPage extends AppCompatActivity {
 		new Thread(this::sendShit).start();
 	}
 
-	public LoadingPage(Request r, Activity nextActivity) {
+	public LoadingPage(Request request, Activity nextActivity) {
 		super();
-		this.r = r;
+		this.request = request;
 		this.nextActivity = nextActivity;
 	}
 
@@ -42,9 +42,9 @@ public class LoadingPage extends AppCompatActivity {
 	}
 
 	public void periodic() {
-		if (r.send()) {
+		if (request.send()) {
 			Intent transfer = new Intent(this, nextActivity.getClass());
-			transfer.putExtra("data", r.getResponse());
+			transfer.putExtra("data", request.getResponse());
 			startActivity(transfer);
 			done = true;
 		}
