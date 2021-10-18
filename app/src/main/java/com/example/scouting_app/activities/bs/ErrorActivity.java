@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities.bs;
 
 import android.content.Context;
 import android.media.AudioAttributes;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.scouting_app.R;
 
 public class ErrorActivity extends AppCompatActivity {
 	private SoundPool soundPool;

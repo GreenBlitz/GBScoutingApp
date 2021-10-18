@@ -39,4 +39,5 @@
     <string name="games_played">Games Played:</string>
     <string name="send">send</string>
     <string name="cancel">cancel</string>
+	<string name="your_device_appears_to_have_communication_problems">Your device appears to have communication problems.</string>
 </resources>

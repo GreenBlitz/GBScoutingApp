@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities;
 
 import static com.example.util.Constants.GamesPage.TEAMS_PER_ALLIANCE;
 
@@ -18,6 +18,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.scouting_app.R;
+import com.example.scouting_app.activities.bs.ErrorActivity;
 import com.example.util.Constants;
 import com.example.util.Net;
 
@@ -69,10 +71,9 @@ public class GamesPage extends AppCompatActivity {
 		JSONArray arr = null;
 		try {
 			while (arr == null) {
-				if(responseData == null){
+				if (responseData == null) {
 					arr = new JSONArray(sharedPref.getString(SERIALIZED_GAMES_KEY, null));
-				}
-				else {
+				} else {
 					arr = (JSONArray) responseData.get("games");
 					sharedPref.edit().putString(SERIALIZED_GAMES_KEY, responseData.get("games").toString()).apply();
 				}

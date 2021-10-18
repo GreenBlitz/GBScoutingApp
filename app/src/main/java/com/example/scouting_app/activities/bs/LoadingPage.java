@@ -1,10 +1,13 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities.bs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.scouting_app.R;
+import com.example.scouting_app.networking.Request;
 
 public class LoadingPage extends AppCompatActivity {
 	private Request r;
@@ -39,7 +42,7 @@ public class LoadingPage extends AppCompatActivity {
 	}
 
 	public void periodic() {
-		if(r.send()) {
+		if (r.send()) {
 			Intent transfer = new Intent(this, nextActivity.getClass());
 			transfer.putExtra("data", r.getResponse());
 			startActivity(transfer);

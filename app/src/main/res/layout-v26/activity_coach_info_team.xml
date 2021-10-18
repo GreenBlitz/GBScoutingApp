@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".CoachInfoTeam"
+    tools:context=".activities.CoachInfoTeam"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp">
 

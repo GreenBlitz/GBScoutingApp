@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.scouting_app.networking.NetworkIssuesHandling;
+import com.example.scouting_app.R;
+import com.example.scouting_app.activities.bs.ErrorActivity;
 import com.example.util.Constants;
 import com.example.util.Net;
 

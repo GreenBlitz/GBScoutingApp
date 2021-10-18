@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.scouting_app.R;
 
 import java.util.ArrayList;
 

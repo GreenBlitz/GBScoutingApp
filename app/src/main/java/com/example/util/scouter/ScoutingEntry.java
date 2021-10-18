@@ -1,8 +1,8 @@
 package com.example.util.scouter;
 
 
-import com.example.scouting_app.NetworkIssuesHandling;
-import com.example.scouting_app.Request;
+import com.example.scouting_app.networking.NetworkIssuesHandling;
+import com.example.scouting_app.networking.Request;
 import com.example.util.Constants;
 import com.example.util.Net;
 

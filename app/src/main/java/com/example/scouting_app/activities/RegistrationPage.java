@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.scouting_app.R;
+import com.example.scouting_app.activities.LoginPage;
 import com.example.util.Constants;
 import com.example.util.Net;
 

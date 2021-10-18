@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.activities;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.scouting_app.R;
+import com.example.scouting_app.activities.GamesPage;
 import com.example.util.Constants;
 import com.example.util.scouter.ScoutingData;
 import com.example.util.scouter.ScoutingEntry;

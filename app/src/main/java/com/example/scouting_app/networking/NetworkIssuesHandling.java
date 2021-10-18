@@ -1,4 +1,4 @@
-package com.example.scouting_app;
+package com.example.scouting_app.networking;
 
 import android.content.SharedPreferences;
 

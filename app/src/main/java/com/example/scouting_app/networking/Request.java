@@ -1,10 +1,9 @@
-package com.example.scouting_app;
+package com.example.scouting_app.networking;
 
 import android.util.Pair;
 
 import com.example.util.*;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
